@@ -42,7 +42,7 @@ p {
 }
 
 a{
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text_muted};
   text-decoration: none;
 }
 

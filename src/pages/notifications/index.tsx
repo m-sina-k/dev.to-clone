@@ -2,11 +2,11 @@ import { Container } from "components";
 import NotificationsSidebar from "./NotificationsSidebar";
 
 import notifImage from "assets/images/utils/empty_mail_box.png";
-import { NotificationsStyle } from "./Notifications.styles";
+import { Notifications } from "./Notifications.styles";
 
-const Notifications = () => {
+const Index = () => {
   return (
-    <NotificationsStyle>
+    <Notifications>
       <Container pageContainer>
         <section className="heading">
           <h1>اعلانات</h1>
@@ -19,8 +19,8 @@ const Notifications = () => {
           </section>
         </div>
       </Container>
-    </NotificationsStyle>
+    </Notifications>
   );
 };
 
-export default Notifications;
+export default Index;

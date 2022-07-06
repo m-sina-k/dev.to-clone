@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { flexCenter } from "styles/utilityStyles";
 
-export const NotificationsStyle = styled.main`
-  /* margin-top: ${({ theme }) => theme.layout.spacing.page_offset_top}; */
+export const Notifications = styled.main`
   .heading {
     margin-bottom: ${({ theme }) => theme.layout.spacing.md};
 

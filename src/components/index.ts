@@ -6,17 +6,20 @@ interface ContainerProps {
 }
 
 interface RowProps {
-  jc?: string;
   ai?: string;
+  jc?: string;
 }
 
 interface ButtonProps {
-  m?: string;
   p?: string;
+  m?: string;
+  onClick?: (e?:Event) => any;
 }
 
 interface StyledLinkProps {
   active?: boolean;
+  p?: string;
+  m?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -70,14 +73,14 @@ export const ButtonPrimary = styled(Button)`
   }
 `;
 
-export const ButtonSecodary = styled(Button)`
+export const ButtonSecondary = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
   fill: ${({ theme }) => theme.colors.text};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};
     background-color: ${({ theme }) => theme.layout.global_colors.primary_tint};
-    color: ${({ theme }) => theme.layout.global_colors.primary};
+    color: ${({ theme }) => theme.layout.global_colors.primary} !important;
   }
 `;
 
@@ -85,7 +88,9 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
   border-radius: 4px;
   transition: all 0.2s ease;
   display: flex;
-  padding: 8px 16px;
+  align-items: center;
+  padding: ${({ p }) => (p ? p : "8px 16px")};
+  margin: ${({ m }) => (m ? m : null)};
   background-color: ${(props) =>
     props.active ? props.theme.colors.block_color : "transparent"};
 

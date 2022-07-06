@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonPrimary, ButtonSecodary } from "components";
+import { ButtonPrimary, ButtonSecondary } from "components";
 import { ReactComponent as NotifIcon } from "assets/icons/notification.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 
@@ -15,15 +15,15 @@ const HeaderWidgets = () => {
           </Link>
 
           <Link to="/search" className="search_button">
-            <ButtonSecodary p="0 8px">
+            <ButtonSecondary p="0 8px">
               <SearchIcon />
-            </ButtonSecodary>
+            </ButtonSecondary>
           </Link>
 
           <Link to="/notifications/all">
-            <ButtonSecodary m="0 6px 0 10px"p="0 8px">
+            <ButtonSecondary m="0 6px 0 10px"p="0 8px">
               <NotifIcon />
-            </ButtonSecodary>
+            </ButtonSecondary>
           </Link>
 
           <button className="profile__button">
@@ -33,15 +33,15 @@ const HeaderWidgets = () => {
       ) : (
         <>
           <Link to="/login" className="hidden_button">
-            <ButtonSecodary m="0 0 0 6px" p="0 18px">
+            <ButtonSecondary m="0 0 0 6px" p="0 18px">
               ورود
-            </ButtonSecodary>
+            </ButtonSecondary>
           </Link>
 
           <Link to="/search" className="search_button">
-            <ButtonSecodary m="0 8px 0" p="0 8px">
+            <ButtonSecondary m="0 8px 0" p="0 8px">
               <SearchIcon />
-            </ButtonSecodary>
+            </ButtonSecondary>
           </Link>
 
           <Link to="/sign-up">

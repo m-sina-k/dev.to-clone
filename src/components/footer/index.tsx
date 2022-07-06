@@ -1,10 +1,10 @@
 import { Container } from "components";
-import { FooterStyle } from "./Footer.styles";
+import { Footer } from "./Footer.styles";
 import { FiCoffee, FiHeart } from "react-icons/fi";
 
-const Footer = () => {
+const Index = () => {
   return (
-    <FooterStyle>
+    <Footer>
       <Container>
         <p id="about-text">
           یک شبکه اجتماعی سازنده و فراگیر برای توسعه دهندگان نرم افزار.همراه شما
@@ -20,8 +20,8 @@ const Footer = () => {
           .
         </p>
       </Container>
-    </FooterStyle>
+    </Footer>
   );
 };
 
-export default Footer;
+export default Index;

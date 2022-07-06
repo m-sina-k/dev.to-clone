@@ -6,6 +6,7 @@ import { getAppTheme } from "features/uiSlice";
 // components
 import GlobalStyle from "styles/GlobalStyle";
 import Header from "components/header";
+import SidebarNav from "components/sidebar_nav";
 import Footer from "components/footer";
 
 // pages
@@ -20,6 +21,7 @@ const App = () => {
       <GlobalStyle />
       <Router>
         <Header />
+        <SidebarNav />/
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/notifications/:sectionId" element={<Notifications />} />

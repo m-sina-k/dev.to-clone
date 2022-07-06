@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { flexCenter } from "styles/utilityStyles";
 
-export const HeaderStyle = styled.header`
+export const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;

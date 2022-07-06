@@ -24,7 +24,7 @@ const layout = {
     xl: "2rem",
     xl2: "2.5rem",
     xl3: "3rem",
-    page_offset_top: "5.5rem",
+    page_offset_top: "3rem",
   },
   break_point: {
     xl: "1024px",
@@ -49,7 +49,7 @@ export const themes = {
     colors: {
       body: "#f5f5f5",
       text: "#171717",
-      text_muted: "#2F3AB2",
+      text_muted: "#525252",
       block_color: "#ffffff",
       border_color: "#bdbdbd",
       footer_color: "#E5E5E5",

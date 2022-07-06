@@ -27,7 +27,6 @@ const notifSections: notifType[] = [
 
 const NotificationsSidebar = () => {
   const { sectionId } = useParams();
-  console.log(sectionId);
 
   return (
     <aside id="sidebar">

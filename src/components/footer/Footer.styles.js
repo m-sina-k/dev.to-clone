@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FooterStyle = styled.footer`
+export const Footer = styled.footer`
   background-color: ${({ theme }) => theme.colors.footer_color};
   padding: 30px 0;
   text-align: center;

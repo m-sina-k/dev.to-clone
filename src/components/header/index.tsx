@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleShowSidebarNav } from "features/uiSlice";
 
 // assets
 import logo from "assets/images/utils/logo.png";
@@ -6,20 +8,27 @@ import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 // components
-import { HeaderStyle } from "components/header/Header.styles";
-import { Container, Row, ButtonSecodary } from "components";
+import { Header } from "components/header/Header.styles";
+import { Container, Row, ButtonSecondary } from "components";
 import HeaderWidgets from "components/header/HeaderWidgets";
 
-const Header = () => {
+const Index = () => {
+  const dispatch = useDispatch();
+  const openSidebarNav = () => dispatch(toggleShowSidebarNav(true));
   return (
-    <HeaderStyle>
+    <Header>
       <Container>
         <Row jc="space-between" ai="stretch">
           <section className="header__right">
             {/* sidebar menu button */}
-            <ButtonSecodary m="0 8px 0" p="0 8px" id="sidebar-menu__button">
+            <ButtonSecondary
+              m="0 8px 0"
+              p="0 8px"
+              id="sidebar-menu__button"
+              onClick={openSidebarNav}
+            >
               <MenuIcon />
-            </ButtonSecodary>
+            </ButtonSecondary>
 
             {/* logo */}
             <Link to="/">
@@ -44,8 +53,8 @@ const Header = () => {
           </section>
         </Row>
       </Container>
-    </HeaderStyle>
+    </Header>
   );
 };
 
-export default Header;
+export default Index;
