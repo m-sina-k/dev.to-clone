@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { flexCenter } from "styles/utilityStyles";
 
 export const Notifications = styled.main`
   .heading {
@@ -23,10 +22,10 @@ export const Notifications = styled.main`
     }
 
     #notifications_list {
-      ${flexCenter}
+      display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
-      background-color: ${({ theme }) => theme.colors.block_color};
-      border-radius: 6px;
       padding: 2rem 1rem;
 
       img {

@@ -1,4 +1,4 @@
-import { Container } from "components";
+import { Container,Block } from "components";
 import NotificationsSidebar from "./NotificationsSidebar";
 
 import notifImage from "assets/images/utils/empty_mail_box.png";
@@ -13,10 +13,10 @@ const Index = () => {
         </section>
         <div className="grid__container">
           <NotificationsSidebar />
-          <section id="notifications_list">
+          <Block id="notifications_list">
             <img src={notifImage} alt="لیست-اعلانات-خالی-است" />
             <p>لیست اعلانات شما خالی است!</p>
-          </section>
+          </Block>
         </div>
       </Container>
     </Notifications>

@@ -51,8 +51,8 @@ export const themes = {
       text: "#171717",
       text_muted: "#525252",
       block_color: "#ffffff",
-      border_color: "#bdbdbd",
       footer_color: "#E5E5E5",
+      block_boxShadow:"rgba(23, 23, 23, 0.1) 0px 0px 0px 1px"
     },
     layout,
   },
@@ -64,8 +64,8 @@ export const themes = {
       text: "#FAFAFA",
       text_muted: "#bdbdbd",
       block_color: "#171717",
-      border_color: "#bdbdbd",
-      footer_color:"#171717"
+      footer_color:"#171717",
+      block_boxShadow:"rgba(255, 255, 255, 0.15) 0px 0px 0px 1px"
     },
     layout,
   },

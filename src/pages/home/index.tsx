@@ -1,6 +1,6 @@
 import { Container } from "components";
 import { Home } from "./Home.styles";
-import Navigation from "components/navigation/Navigation";
+import Navigation from "components/utils/Navigation";
 
 const Index = () => {
   return (

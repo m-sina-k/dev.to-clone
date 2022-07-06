@@ -4,13 +4,13 @@ import { toggleShowSidebarNav } from "features/uiSlice";
 
 // assets
 import logo from "assets/images/utils/logo.png";
-import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 // components
 import { Header } from "components/header/Header.styles";
 import { Container, Row, ButtonSecondary } from "components";
 import HeaderWidgets from "components/header/HeaderWidgets";
+import SearchInput from "components/utils/SearchInput";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -36,16 +36,9 @@ const Index = () => {
             </Link>
 
             {/* search input */}
-            <form action="#" className="search-form">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="جستجو..."
-              />
-              <button type="submit" className="search-submit">
-                <SearchIcon />
-              </button>
-            </form>
+            <div id="search_form">
+              <SearchInput />
+            </div>
           </section>
 
           <section className="header__left">

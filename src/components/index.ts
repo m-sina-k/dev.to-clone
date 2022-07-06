@@ -13,7 +13,8 @@ interface RowProps {
 interface ButtonProps {
   p?: string;
   m?: string;
-  onClick?: (e?:Event) => any;
+  isActive?: boolean;
+  onClick?: (e?: Event) => any;
 }
 
 interface StyledLinkProps {
@@ -42,6 +43,12 @@ export const Row = styled.div<RowProps>`
   justify-content: ${(props) => props.jc || "unset"};
 `;
 
+export const Block = styled.div`
+  background-color: ${({ theme }) => theme.colors.block_color};
+  box-shadow: ${({ theme }) => theme.colors.block_boxShadow};
+  border-radius: 6px;
+`;
+
 const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
@@ -51,11 +58,7 @@ const Button = styled.button<ButtonProps>`
   transition: all 0.1s ease;
   background-color: transparent;
   ${({ m }) => (m ? { margin: m } : null)};
-  ${({ p }) => (p ? { padding: p } : { padding: "0 18px" })};
-
-  &:hover {
-    text-decoration: underline;
-  }
+  ${({ p }) => (p ? { padding: p } : { padding: "6px 16px" })};
 
   @media only screen and (max-width: ${({ theme }) =>
       theme.layout.break_point.md}) {
@@ -81,6 +84,20 @@ export const ButtonSecondary = styled(Button)`
     fill: ${({ theme }) => theme.layout.global_colors.primary};
     background-color: ${({ theme }) => theme.layout.global_colors.primary_tint};
     color: ${({ theme }) => theme.layout.global_colors.primary} !important;
+  }
+`;
+
+export const ButtonTertiary = styled(Button)`
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.text : theme.colors.tex_muted};
+  fill: ${({ isActive, theme }) =>
+    isActive ? theme.colors.text : theme.colors.tex_muted};
+  font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
+
+  &:hover {
+    fill: ${({ theme }) => theme.layout.global_colors.primary};
+    color: ${({ theme }) => theme.layout.global_colors.primary} !important;
+    background-color: ${({ theme }) => theme.colors.block_color};
   }
 `;
 

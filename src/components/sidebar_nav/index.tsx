@@ -3,7 +3,7 @@ import { toggleShowSidebarNav,sidebarNavStatus } from "features/uiSlice";
 
 import { Row, ButtonSecondary } from "components";
 import { SidebarNav } from "./SidebarNav.Styles";
-import Navigation from "components/navigation/Navigation";
+import Navigation from "components/utils/Navigation";
 import { IoMdClose } from "react-icons/io";
 
 const Index = () => {
@@ -24,7 +24,6 @@ const Index = () => {
             </ButtonSecondary>
           </Row>
         </section>
-        
         {/* navigation links */}
         <Navigation />
       </div>

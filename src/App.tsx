@@ -12,6 +12,7 @@ import Footer from "components/footer";
 // pages
 import Home from "pages/home";
 import Notifications from "pages/notifications";
+import Search from "pages/search";
 
 const App = () => {
   const theme = useSelector(getAppTheme);
@@ -25,6 +26,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/notifications/:sectionId" element={<Notifications />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         <Footer />
       </Router>

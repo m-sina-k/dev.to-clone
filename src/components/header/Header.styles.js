@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { flexCenter } from "styles/utilityStyles";
 
 export const Header = styled.header`
   position: fixed;
@@ -29,43 +28,9 @@ export const Header = styled.header`
     width: 50px;
     height: 40px;
   }
-
-  .search-form {
-    position: relative;
-    display: flex;
-    margin-right: 16px;
-    height: auto;
-    border-radius: 6px;
-    overflow: hidden;
+  #search_form {
+    margin-right: 1rem;
     min-width: 420px;
-
-    .search-input {
-      border: 1px solid ${({ theme }) => theme.colors.border_color};
-      width: 100%;
-      padding: 4px 8px;
-      border-radius: 6px;
-      &:focus {
-        border: 2px solid royalblue;
-      }
-    }
-
-    .search-submit {
-      ${flexCenter}
-      position: absolute;
-      top: 2px;
-      bottom: 2px;
-      background-color: transparent;
-      fill: ${({ theme }) => theme.colors.text};
-      left: 2px;
-      width: 40px;
-      cursor: pointer;
-      border-radius: 4px;
-
-      &:hover{
-        background-color: ${({ theme }) => theme.layout.global_colors.primary_tint};
-        fill: ${({ theme }) => theme.layout.global_colors.primary};
-      }
-    }
   }
   .widgets {
     display: flex;
@@ -85,7 +50,7 @@ export const Header = styled.header`
 
   @media only screen and (max-width: ${({ theme }) =>
       theme.layout.break_point.lg}) {
-    .search-form,
+    #search_form,
     .hidden_button {
       display: none;
     }

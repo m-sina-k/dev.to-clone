@@ -44,6 +44,9 @@ p {
 a{
   color: ${({ theme }) => theme.colors.text_muted};
   text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 
 ul,
