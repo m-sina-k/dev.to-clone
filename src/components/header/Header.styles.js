@@ -55,7 +55,6 @@ export const HeaderStyle = styled.header`
       top: 2px;
       bottom: 2px;
       background-color: transparent;
-      /* max-height: 90%; */
       fill: ${({ theme }) => theme.colors.text};
       left: 2px;
       width: 40px;

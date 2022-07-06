@@ -44,9 +44,6 @@ p {
 a{
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
-  &:hover{
-  /* color: white; */
-}
 }
 
 ul,
@@ -93,5 +90,6 @@ h6 {
     font-family: 'Estedad-Medium';
     color: ${({ theme }) => theme.colors.text};;
 }
+
 `;
 export default GlobalStyle;

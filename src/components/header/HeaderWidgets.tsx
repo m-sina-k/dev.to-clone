@@ -5,7 +5,7 @@ import { ReactComponent as NotifIcon } from "assets/icons/notification.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 
 const HeaderWidgets = () => {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   return (
     <section className="widgets">
       {auth ? (
@@ -20,7 +20,7 @@ const HeaderWidgets = () => {
             </ButtonSecodary>
           </Link>
 
-          <Link to="/notifications">
+          <Link to="/notifications/all">
             <ButtonSecodary m="0 6px 0 10px"p="0 8px">
               <NotifIcon />
             </ButtonSecodary>

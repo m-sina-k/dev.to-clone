@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+interface ContainerProps {
+  pageContainer?: boolean;
+}
 
 interface RowProps {
   jc?: string;
@@ -10,9 +15,16 @@ interface ButtonProps {
   p?: string;
 }
 
-export const Container = styled.div`
+interface StyledLinkProps {
+  active?: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   padding: 0 ${({ theme }) => theme.layout.spacing.md};
   max-width: ${({ theme }) => theme.layout.container_width};
+  margin: 0 auto;
+  margin-top: ${(props) =>
+    props.pageContainer ? props.theme.layout.spacing.page_offset_top : 0};
   width: 100%;
 
   @media only screen and (max-width: ${({ theme }) =>
@@ -60,10 +72,28 @@ export const ButtonPrimary = styled(Button)`
 
 export const ButtonSecodary = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
+  fill: ${({ theme }) => theme.colors.text};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};
     background-color: ${({ theme }) => theme.layout.global_colors.primary_tint};
+    color: ${({ theme }) => theme.layout.global_colors.primary};
+  }
+`;
+
+export const StyledLink = styled(Link)<StyledLinkProps>`
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  padding: 8px 16px;
+  background-color: ${(props) =>
+    props.active ? props.theme.colors.block_color : "transparent"};
+
+  &:hover {
+    background-color: ${(props) =>
+      props.active
+        ? props.theme.layout.global_colors.block_color
+        : props.theme.layout.global_colors.primary_tint};
     color: ${({ theme }) => theme.layout.global_colors.primary};
   }
 `;

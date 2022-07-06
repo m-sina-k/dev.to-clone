@@ -6,9 +6,11 @@ import { getAppTheme } from "features/uiSlice";
 // components
 import GlobalStyle from "styles/GlobalStyle";
 import Header from "components/header";
+import Footer from "components/footer";
 
 // pages
 import Home from "pages/home";
+import Notifications from "pages/notifications";
 
 const App = () => {
   const theme = useSelector(getAppTheme);
@@ -20,7 +22,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/notifications/:sectionId" element={<Notifications />} />
         </Routes>
+        <Footer />
       </Router>
     </ThemeProvider>
   );

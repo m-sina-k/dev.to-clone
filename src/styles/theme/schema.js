@@ -1,19 +1,19 @@
 const layout = {
   container_width: "1280px",
   global_colors: {
-    primary_tint: "#EBECFC",
+    primary_tint: "#3b49df33",
     primary: "#3b49df",
     primary_shade: "#2F3AB2",
-    green_tint: "rgba(5,150,105,0.2)",
+    green_tint: "#05966933",
     green: "#059669",
     green_shade: "#047857",
-    yellow_tint: "rgba(245,105,11,0.2)",
+    yellow_tint: "#f59f0b33",
     yellow: "#f59f0b",
     yellow_shade: "#d97706",
-    red_tint: "rgba(220, 38, 38,0.2)",
+    red_tint: "#dc262633",
     red: "#dc2626",
     red_shade: "#b91c1c",
-    glass_btn_hover: "rgba(255,255,255,0.2)",
+    glass_btn_hover: "#ffffff33",
   },
   spacing: {
     xxs: "0.25rem",
@@ -24,6 +24,7 @@ const layout = {
     xl: "2rem",
     xl2: "2.5rem",
     xl3: "3rem",
+    page_offset_top: "5.5rem",
   },
   break_point: {
     xl: "1024px",
@@ -51,6 +52,7 @@ export const themes = {
       text_muted: "#2F3AB2",
       block_color: "#ffffff",
       border_color: "#bdbdbd",
+      footer_color: "#E5E5E5",
     },
     layout,
   },
@@ -63,6 +65,7 @@ export const themes = {
       text_muted: "#bdbdbd",
       block_color: "#171717",
       border_color: "#bdbdbd",
+      footer_color:"#171717"
     },
     layout,
   },
