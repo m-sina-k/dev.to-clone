@@ -1,4 +1,4 @@
-import { StyledLink } from "components";
+import { StyledLink } from "components/layout";
 import { useParams } from "react-router-dom";
 
 interface notifType {

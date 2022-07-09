@@ -1,4 +1,4 @@
-import { Container,Block } from "components";
+import { Container,Block } from "components/layout";
 import NotificationsSidebar from "./NotificationsSidebar";
 
 import notifImage from "assets/images/utils/empty_mail_box.png";

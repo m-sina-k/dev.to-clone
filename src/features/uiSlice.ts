@@ -1,17 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { ThemeMode } from "types/types";
 import { themes } from "styles/theme/schema";
 
 interface State {
   showSidebarNav: boolean;
-  appTheme: ThemeMode;
+  appTheme: object;
 }
 
 const initialState: State = {
   showSidebarNav: false,
-  appTheme:
-    (localStorage.getItem("DEV.TO__app-theme") as ThemeMode) || themes.light,
+  appTheme: themes.light,
 };
 
 const uiSlice = createSlice({

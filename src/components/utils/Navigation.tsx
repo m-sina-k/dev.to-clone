@@ -1,28 +1,29 @@
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sidebarNavStatus, toggleShowSidebarNav } from "features/uiSlice";
 import { routes, socialMediaLinks } from "data/routes";
-import { StyledLink, Row, ButtonSecondary } from "components";
+import { StyledLink, Row } from "components/layout";
+import { ButtonSecondary } from "components/utils/Buttons";
 import styled from "styled-components";
 
-const Navigation = () => {
-  const NavigationStyle = styled.div`
-    #links_list {
-     
-      .link_item {
-        .sidebar_link {
-          .link_icon {
-            margin-left: 0.5rem;
-          }
+const NavigationStyle = styled.div`
+  #links_list {
+    .link_item {
+      .sidebar_link {
+        .link_icon {
+          margin-left: 0.5rem;
         }
       }
     }
+  }
 
-    .social_media_icon {
-      font-size: 18px;
-      color: ${({ theme }) => theme.colors.text_muted};
-    }
-  `;
-  const dispatch = useDispatch()
+  .social_media_icon {
+    font-size: 18px;
+    color: ${({ theme }) => theme.colors.text_muted};
+  }
+`;
+
+const Navigation = () => {
+  const dispatch = useDispatch();
   const isSidebarNavOpen = useSelector(sidebarNavStatus);
 
   const closeSideNav = () => {

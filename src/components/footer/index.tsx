@@ -1,4 +1,4 @@
-import { Container } from "components";
+import { Container } from "components/layout";
 import { Footer } from "./Footer.styles";
 import { FiCoffee, FiHeart } from "react-icons/fi";
 

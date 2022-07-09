@@ -1,4 +1,5 @@
-import { Container, Row, Block, ButtonTertiary } from "components";
+import { Container, Row, Block } from "components/layout";
+import { ButtonTertiary } from "components/utils/Buttons";
 import SearchInput from "components/utils/SearchInput";
 import { Search } from "./Search.styles";
 

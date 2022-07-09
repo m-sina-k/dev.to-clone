@@ -33,6 +33,7 @@ html {
 body{
     background-color: ${({ theme }) => theme.colors.body};
     font-family: 'Estedad-Medium';
+    min-height:100vh;
 }
 
 p {
@@ -44,9 +45,6 @@ p {
 a{
   color: ${({ theme }) => theme.colors.text_muted};
   text-decoration: none;
-  &:hover{
-    text-decoration: underline;
-  }
 }
 
 ul,

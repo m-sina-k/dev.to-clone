@@ -8,7 +8,8 @@ import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 // components
 import { Header } from "components/header/Header.styles";
-import { Container, Row, ButtonSecondary } from "components";
+import { Container, Row } from "components/layout";
+import { ButtonSecondary } from "components/utils/Buttons";
 import HeaderWidgets from "components/header/HeaderWidgets";
 import SearchInput from "components/utils/SearchInput";
 

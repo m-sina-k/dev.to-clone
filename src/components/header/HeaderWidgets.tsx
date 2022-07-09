@@ -1,14 +1,15 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonPrimary, ButtonSecondary } from "components";
+import { useSelector } from "react-redux";
+import { getAuthState } from "features/authSlice";
+import { ButtonPrimary, ButtonSecondary } from "components/utils/Buttons";
 import { ReactComponent as NotifIcon } from "assets/icons/notification.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 
 const HeaderWidgets = () => {
-  const [auth, setAuth] = useState(true);
+  const { currentUser } = useSelector(getAuthState);
   return (
     <section className="widgets">
-      {auth ? (
+      {currentUser?.accessToken ? (
         <>
           <Link to="/new-post" className="hidden_button">
             <ButtonPrimary>پست جدید</ButtonPrimary>
@@ -21,7 +22,7 @@ const HeaderWidgets = () => {
           </Link>
 
           <Link to="/notifications/all">
-            <ButtonSecondary m="0 6px 0 10px"p="0 8px">
+            <ButtonSecondary m="0 6px 0 10px" p="0 8px">
               <NotifIcon />
             </ButtonSecondary>
           </Link>
@@ -32,7 +33,7 @@ const HeaderWidgets = () => {
         </>
       ) : (
         <>
-          <Link to="/login" className="hidden_button">
+          <Link to="/sign-in" className="hidden_button">
             <ButtonSecondary m="0 0 0 6px" p="0 18px">
               ورود
             </ButtonSecondary>
