@@ -1,5 +1,6 @@
 const layout = {
   container_width: "1280px",
+  header_height:'56px',
   global_colors: {
     primary_tint: "#3b49df33",
     primary: "#3b49df",
@@ -40,6 +41,7 @@ const layout = {
     xl2: "22px",
     xl3: "24px",
   },
+
 };
 
 export const themes = {
@@ -52,6 +54,7 @@ export const themes = {
       text_muted: "#525252",
       block_color: "#ffffff",
       footer_color: "#E5E5E5",
+      border_color:'rgba(23, 23, 23, 0.2)',
       block_boxShadow:"rgba(23, 23, 23, 0.2) 0px 0px 0px 1px"
     },
     layout,
@@ -65,6 +68,7 @@ export const themes = {
       text_muted: "#bdbdbd",
       block_color: "#171717",
       footer_color:"#171717",
+      border_color:"rgba(255, 255, 255, 0.15)",
       block_boxShadow:"rgba(255, 255, 255, 0.15) 0px 0px 0px 1px"
     },
     layout,

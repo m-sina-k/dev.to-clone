@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "app/store";
 import AuthForm from "./AuthForm";
 import { Input } from "components/layout";
-import { userSignUp, setAuthError,getAuthState } from "features/authSlice";
+import { userSignUp, setAuthError, getAuthState } from "features/authSlice";
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const SignUp = () => {
     const validEmailPattern =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    const { password, passwordRepeat } = formData
+    const { password, passwordRepeat } = formData;
 
     const isEmailValid = String(email).toLowerCase().match(validEmailPattern);
 
@@ -48,7 +48,7 @@ const SignUp = () => {
       );
   };
 
-  if (currentUser?.accessToken) return <Navigate to="/" />;
+  if (currentUser) return <Navigate to="/" />;
 
   return (
     <AuthForm>

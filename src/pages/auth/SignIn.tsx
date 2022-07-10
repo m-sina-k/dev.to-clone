@@ -25,7 +25,7 @@ const SignIn = () => {
       );
   };
 
-  if (currentUser?.accessToken) return <Navigate to="/" />;
+  if (currentUser) return <Navigate to="/" />;
 
   return (
     <AuthForm>

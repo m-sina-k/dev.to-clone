@@ -89,7 +89,19 @@ h6 {
 
 ::placeholder {
     font-family: 'Estedad-Medium';
-    color: ${({ theme }) => theme.colors.text};;
+    color: ${({ theme }) => theme.colors.text};
+}
+
+hr{
+  padding: 0;
+  margin: 5px 0;
+  border: none;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.border_color};
+}
+
+.ltr{
+  direction: ltr;
 }
 
 `;

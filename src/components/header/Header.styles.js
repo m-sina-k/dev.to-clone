@@ -5,7 +5,7 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: ${({ theme }) => theme.layout.header_height};
   background-color: ${({ theme }) => theme.colors.block_color};
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   z-index: 100;
@@ -37,14 +37,6 @@ export const Header = styled.header`
 
     .search_button {
       display: none;
-    }
-
-    .profile__button {
-      border-radius: 999px;
-      width: 35px;
-      height: 35px;
-      padding: 6px;
-      align-self: center;
     }
   }
 

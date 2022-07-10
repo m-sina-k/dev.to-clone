@@ -3,11 +3,11 @@ import { auth } from "server/firebase.config";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import {
   setAuthErrorMessage,
   registerUserInFirestore,
+  fetchUserInfo,
 } from "helpers/authMethods";
 
 interface AuthError {
@@ -24,9 +24,7 @@ interface UserCredentials {
 interface State {
   authLoading: boolean;
   authError: AuthError;
-  userCredentials: UserCredentials | null;
-  currentUser: object | null;
-  loadingCredentials: boolean;
+  currentUser: UserCredentials | null;
 }
 
 interface FormData {
@@ -54,8 +52,8 @@ export const userSignUp = createAsyncThunk(
       );
       if (!registrationSucceeded)
         return rejectWithValue({ message: "خطا در ثبت کاربر در فایر استور." });
-      return true;
-    } catch (error:any) {
+      return userCredentials;
+    } catch (error: any) {
       console.log(error);
       return rejectWithValue(setAuthErrorMessage(error.code));
     }
@@ -67,33 +65,23 @@ export const userSignIn = createAsyncThunk(
   async (formData: FormData, { rejectWithValue }) => {
     const { email, password } = formData;
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      return true;
-    } catch (error:any) {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const userCredentials: UserCredentials = await fetchUserInfo(user.uid);
+      return userCredentials;
+    } catch (error: any) {
       console.log(error);
       return rejectWithValue(setAuthErrorMessage(error.code));
     }
   }
 );
 
-export const userSignOut = createAsyncThunk(
-  "authSlice/userSignOut",
-  async () => {
-    try {
-      await signOut(auth);
-      return true;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
+
+const lsCurrentUser = localStorage.getItem("DEV.to__user-credentials");
 
 const initialState: State = {
   authLoading: false,
-  loadingCredentials: true,
   authError: { message: "", errorCode: "" },
-  userCredentials: null,
-  currentUser: null,
+  currentUser: lsCurrentUser ? (JSON.parse(lsCurrentUser) as UserCredentials) : null,
 };
 
 const authSlice = createSlice({
@@ -103,20 +91,18 @@ const authSlice = createSlice({
     setAuthError: (state, { payload }) => {
       state.authError = payload;
     },
-    setCurrentUser: (state, { payload }) => {
-      state.currentUser = payload;
-    },
-    setCredentialsLoading: (state, { payload }) => {
-      state.loadingCredentials = payload;
-    },
+    userSignOut:(state)=>{
+      state.currentUser = null
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(userSignUp.pending, (state) => {
         state.authLoading = true;
       })
-      .addCase(userSignUp.fulfilled, (state) => {
+      .addCase(userSignUp.fulfilled, (state, { payload }) => {
         state.authLoading = false;
+        state.currentUser = payload;
       })
       .addCase(userSignUp.rejected, (state, action) => {
         const error = action.payload as AuthError;
@@ -128,6 +114,7 @@ const authSlice = createSlice({
       })
       .addCase(userSignIn.fulfilled, (state, { payload }) => {
         state.authLoading = false;
+        state.currentUser = payload;
       })
       .addCase(userSignIn.rejected, (state, action) => {
         state.authLoading = false;
@@ -137,8 +124,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentialsLoading, setAuthError, setCurrentUser } =
-  authSlice.actions;
+export const { setAuthError,userSignOut } = authSlice.actions;
 export const getAuthState = (state: any) => state.auth;
 
 export default authSlice.reducer;

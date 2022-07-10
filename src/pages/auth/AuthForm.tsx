@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
-import { getAuthState } from "features/authSlice";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAuthState, setAuthError } from "features/authSlice";
 import { AuthFormStyle } from "./AuthForm.styles";
 import { Container, Block } from "components/layout";
 import { Oval } from "react-loader-spinner";
@@ -9,7 +10,13 @@ interface Props {
 }
 
 const AuthForm: React.FC<Props> = ({ children }) => {
+  const dispatch = useDispatch();
   const { authLoading, authError } = useSelector(getAuthState);
+
+  // clear authError on render
+  useEffect(() => {
+    if (authError) dispatch(setAuthError(null));
+  }, [dispatch]);
 
   return (
     <Container pageContainer>

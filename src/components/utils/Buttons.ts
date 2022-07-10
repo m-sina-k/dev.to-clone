@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 interface ButtonProps {
-    p?: string;
-    m?: string;
-    isActive?: boolean;
-    onClick?: (e?: Event) => any;
-  }
+  p?: string;
+  m?: string;
+  h?: string;
+  isActive?: boolean;
+  onClick?: (e?: Event) => any;
+}
 
 const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   border-radius: 6px;
-  height: 100%;
+  height: ${({ h }) => (h ? h : "auto")};
   font-size: 16px;
   transition: all 0.1s ease;
   background-color: transparent;
@@ -47,14 +48,25 @@ export const ButtonSecondary = styled(Button)`
 
 export const ButtonTertiary = styled(Button)`
   color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.text : theme.colors.tex_muted};
+    isActive ? theme.colors.text : theme.colors.text_muted};
   fill: ${({ isActive, theme }) =>
-    isActive ? theme.colors.text : theme.colors.tex_muted};
+    isActive ? theme.colors.text : theme.colors.text_muted};
   font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};
     color: ${({ theme }) => theme.layout.global_colors.primary} !important;
     background-color: ${({ theme }) => theme.colors.block_color};
+  }
+`;
+
+export const ButtonCTA = styled(Button)`
+  color: white;
+  fill: white;
+  background-color: ${({ theme }) => theme.layout.global_colors.primary};
+
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.layout.global_colors.primary_shade};
   }
 `;

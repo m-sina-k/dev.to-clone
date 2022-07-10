@@ -4,12 +4,13 @@ import { getAuthState } from "features/authSlice";
 import { ButtonPrimary, ButtonSecondary } from "components/utils/Buttons";
 import { ReactComponent as NotifIcon } from "assets/icons/notification.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
+import ProfileButton from "./dashboard_dd/DashboardButton";
 
 const HeaderWidgets = () => {
   const { currentUser } = useSelector(getAuthState);
   return (
     <section className="widgets">
-      {currentUser?.accessToken ? (
+      {currentUser ? (
         <>
           <Link to="/new-post" className="hidden_button">
             <ButtonPrimary>پست جدید</ButtonPrimary>
@@ -22,19 +23,17 @@ const HeaderWidgets = () => {
           </Link>
 
           <Link to="/notifications/all">
-            <ButtonSecondary m="0 6px 0 10px" p="0 8px">
+            <ButtonSecondary m="0 6px 0 10px" p="0 8px" h="100%">
               <NotifIcon />
             </ButtonSecondary>
           </Link>
 
-          <button className="profile__button">
-            <span></span>
-          </button>
+          <ProfileButton />
         </>
       ) : (
         <>
           <Link to="/sign-in" className="hidden_button">
-            <ButtonSecondary m="0 0 0 6px" p="0 18px">
+            <ButtonSecondary m="0 0 0 6px" p="0 18px" h="100%">
               ورود
             </ButtonSecondary>
           </Link>

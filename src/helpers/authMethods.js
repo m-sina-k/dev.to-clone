@@ -37,23 +37,11 @@ export const registerUserInFirestore = async (userCredentials) => {
   }
 };
 
-const fetchUsernameById = async (userId) => {
+export const fetchUserInfo = async (userId) => {
   let user;
   const docRef = doc(usersDbRef, userId);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) user = docSnap.data();
-  return user.username;
-};
-
-export const fetchUserCredentials = async (user) => {
-  const { accessToken, email, displayName, photoURL, uid } = user;
-  const username = await fetchUsernameById(uid);
-  return {
-    accessToken,
-    uid,
-    email,
-    username,
-    photoURL,
-    displayName,
-  };
+  const { username, photoURL, displayName, bio, id, email } = user;
+  return { username, photoURL, displayName, bio, id, email };
 };
