@@ -8,7 +8,7 @@ import GlobalStyle from "styles/GlobalStyle";
 import Header from "components/header";
 import SidebarNav from "components/sidebar_nav";
 import Footer from "components/footer";
-
+import PrivateRoute from "components/utils/PrivateRoute";
 // pages
 import Home from "pages/home";
 import Notifications from "pages/notifications";
@@ -16,6 +16,7 @@ import Search from "pages/search";
 import SignUp from "pages/auth/SignUp";
 import SignIn from "pages/auth/SignIn";
 import SignOutConfirm from "pages/SignOutConfirm";
+import Settings from "pages/setting";
 
 // assets
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -35,7 +36,10 @@ const App = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/signout-confirm" element={<SignOutConfirm />} />
+          <Route path="/signout-confirm" element={<SignOutConfirm />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/settings/:sectionId" element={<Settings />} />
+          </Route>
         </Routes>
       </Router>
       <Footer />

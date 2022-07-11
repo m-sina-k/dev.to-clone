@@ -4,7 +4,6 @@ import { getAuthState } from "features/authSlice";
 import styled from "styled-components";
 import DashboardDd from "./DashboardDd";
 import { useOnClickOutside } from "hooks/useClickOutside";
-import defaultProfilePic from "assets/images/utils/user.png";
 
 
 const ProfBtn = styled.section`
@@ -33,7 +32,7 @@ const ProfileButton = () => {
     <ProfBtn className="profile__button">
       <button className="dd_btn" ref={ddRef}>
         <img
-          src={photoURL || defaultProfilePic}
+          src={photoURL}
           alt={displayName}
           onClick={toggleShowDd}
         />

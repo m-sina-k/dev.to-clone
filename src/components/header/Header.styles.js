@@ -38,6 +38,15 @@ export const Header = styled.header`
     .search_button {
       display: none;
     }
+
+    .username_container {
+      display: flex;
+      flex-direction: column;
+      
+      span {
+        margin-bottom: 6px;
+      }
+    }
   }
 
   @media only screen and (max-width: ${({ theme }) =>

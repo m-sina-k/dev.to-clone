@@ -68,7 +68,12 @@ textarea:focus {
 }
 
 input,textarea{
-  background-color: ${({ theme }) => theme.colors.body};;
+  background-color: ${({ theme }) => theme.colors.body};
+  color: ${({ theme }) => theme.colors.text};
+}
+
+textarea{
+  resize:none
 }
 
 button{
@@ -98,6 +103,10 @@ hr{
   border: none;
   height: 1px;
   background-color: ${({ theme }) => theme.colors.border_color};
+}
+
+label{
+  color: ${({ theme }) => theme.colors.text};
 }
 
 .ltr{

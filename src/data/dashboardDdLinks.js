@@ -11,7 +11,7 @@ export const dashboardDdLinks = [
     },
     {
         id:3,
-        url:'/settings',
+        url:'/settings/customization',
         text:'تنظیمات'
     },
     

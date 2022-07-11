@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Notifications = styled.main`
+  min-height: 80vh;
+
   .heading {
     margin-bottom: ${({ theme }) => theme.layout.spacing.md};
 

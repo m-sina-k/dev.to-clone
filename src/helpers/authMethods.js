@@ -45,3 +45,27 @@ export const fetchUserInfo = async (userId) => {
   const { username, photoURL, displayName, bio, id, email } = user;
   return { username, photoURL, displayName, bio, id, email };
 };
+
+export const updateProfileInfo = async (profileData) => {
+  try {
+    const { bio, photoURL, name, username,id } = profileData;
+    const docRef = doc(usersDbRef, id);
+    await setDoc(
+      docRef,
+      {
+        bio,
+        photoURL,
+        username,
+        displayName: name,
+      },
+      {
+        merge: true,
+      }
+    );
+    const newUserProfile = await fetchUserInfo(id)
+    return newUserProfile
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

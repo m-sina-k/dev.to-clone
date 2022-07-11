@@ -47,7 +47,7 @@ const layout = {
 export const themes = {
   light: {
     id: "T_01",
-    name: "Light",
+    name: "light",
     colors: {
       body: "#f5f5f5",
       text: "#171717",
@@ -61,7 +61,7 @@ export const themes = {
   },
   dark: {
     id: "T_02",
-    name: "Dark",
+    name: "dark",
     colors: {
       body: "#000000",
       text: "#FAFAFA",

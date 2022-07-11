@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 interface ContainerProps {
@@ -11,13 +11,17 @@ interface RowProps {
 }
 
 interface StyledLinkProps {
-  active?: boolean;
+  $active?: boolean;
   p?: string;
   m?: string;
 }
 
 interface BlockProps {
   p?: string;
+}
+
+interface BannerProps {
+  variant: "danger" | "success";
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -44,7 +48,7 @@ export const Block = styled.div<BlockProps>`
   background-color: ${({ theme }) => theme.colors.block_color};
   box-shadow: ${({ theme }) => theme.colors.block_boxShadow};
   border-radius: 6px;
-  padding: ${({ p }) => (p ? p : null)};
+  padding: ${({ p }) => (p ? p : "1rem")};
 `;
 
 export const StyledLink = styled(Link)<StyledLinkProps>`
@@ -55,18 +59,18 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
   padding: ${({ p }) => (p ? p : "8px 16px")};
   margin: ${({ m }) => (m ? m : null)};
   background-color: ${(props) =>
-    props.active ? props.theme.colors.block_color : "transparent"};
+    props.$active ? props.theme.colors.block_color : "transparent"};
 
   &:hover {
     background-color: ${(props) =>
-      props.active
+      props.$active
         ? props.theme.layout.global_colors.block_color
         : props.theme.layout.global_colors.primary_tint};
     color: ${({ theme }) => theme.layout.global_colors.primary};
   }
 `;
 
-export const Input = styled.input`
+const inputStyle = css`
   width: 100%;
   height: 100%;
   padding: 4px 8px;
@@ -79,4 +83,39 @@ export const Input = styled.input`
   &:focus {
     border: 2px solid royalblue;
   }
+`;
+
+export const Input = styled.input`
+  ${inputStyle}
+`;
+
+export const Textarea = styled.textarea`
+  ${inputStyle}
+`;
+
+export const Banner = styled.div<BannerProps>`
+  width: 100%;
+  background-color: ${({ theme, variant }) =>
+    variant === "danger"
+      ? theme.layout.global_colors.red
+      : theme.layout.global_colors.green};
+  padding: 1rem;
+  margin-top: 3.5rem;
+  p {
+    color: white;
+    text-align: center;
+  }
+`;
+
+export const FormLoading = styled.div`
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
 `;

@@ -4,6 +4,7 @@ export const Footer = styled.footer`
   background-color: ${({ theme }) => theme.colors.footer_color};
   padding: 30px 0;
   text-align: center;
+  margin-top: 3rem;
 
   p {
     margin-bottom: 0.5rem;

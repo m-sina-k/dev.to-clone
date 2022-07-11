@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { toggleShowSidebarNav } from "features/uiSlice";
 
 // assets
-import logo from "assets/images/utils/logo.png";
+import logo from "assets/images/logo.png";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 // components

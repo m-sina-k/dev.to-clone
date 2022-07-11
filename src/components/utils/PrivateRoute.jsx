@@ -4,7 +4,7 @@ import { getAuthState } from "features/authSlice";
 
 const PrivateRoute = () => {
   const { currentUser } = useSelector(getAuthState);
-  return currentUser?.accessToken ? <Outlet /> : <Navigate to="/sign-in" />;
+  return currentUser ? <Outlet /> : <Navigate to="/sign-in" />;
 };
 
 export default PrivateRoute;

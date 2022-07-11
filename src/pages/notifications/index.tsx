@@ -1,7 +1,7 @@
 import { Container,Block } from "components/layout";
 import NotificationsSidebar from "./NotificationsSidebar";
 
-import notifImage from "assets/images/utils/empty_mail_box.png";
+import notifImage from "assets/images/empty_mail_box.png";
 import { Notifications } from "./Notifications.styles";
 
 const Index = () => {

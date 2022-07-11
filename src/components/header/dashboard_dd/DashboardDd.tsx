@@ -16,9 +16,11 @@ const DashboardDd: React.FC<PropTypes> = ({
   return (
     <Dropdown top="120%" left="0">
       <DdItem onClick={onClose}>
-        <StyledLink to="/setting">
+        <StyledLink to="/settings/profile">
+          <section className="username_container">
           {displayName && <span>{displayName}</span>}
-          <span className="ltr">@{username}</span>
+          <p className="ltr">@{username}</p>
+          </section>
         </StyledLink>
       </DdItem>
       <hr />

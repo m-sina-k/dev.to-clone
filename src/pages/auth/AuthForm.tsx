@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAuthState, setAuthError } from "features/authSlice";
 import { AuthFormStyle } from "./AuthForm.styles";
-import { Container, Block } from "components/layout";
+import { Container, Block,FormLoading } from "components/layout";
 import { Oval } from "react-loader-spinner";
 
 interface Props {
@@ -36,13 +36,13 @@ const AuthForm: React.FC<Props> = ({ children }) => {
           <Block className="auth_form_container" p="2rem">
             {/* loading overlay  */}
             {authLoading && (
-              <div className="auth_form_loading_overlay">
+              <FormLoading>
                 <Oval
                   color="#3b49df"
                   secondaryColor="#3b49df33"
                   ariaLabel="لطفا صبر کنید..."
                 />
-              </div>
+              </FormLoading>
             )}
 
             {/* heading */}

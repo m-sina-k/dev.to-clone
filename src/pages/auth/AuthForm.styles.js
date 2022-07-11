@@ -38,24 +38,10 @@ export const AuthFormStyle = styled.div`
     justify-content: center;
     position: relative;
 
-    .auth_form_loading_overlay {
-      position: absolute;
-      display: flex;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 6px;
-    }
-
     .heading {
       text-align: center;
       margin-bottom: 2rem;
     }
-   
 
     .separator {
       margin: 1.5rem 0;

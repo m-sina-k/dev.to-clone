@@ -1,20 +1,20 @@
-import { StyledLink } from "components/layout";
 import { useParams } from "react-router-dom";
-import { notifSections } from "data/notifSections";
+import { StyledLink } from "components/layout";
+import { settingSections } from "data/settingSections";
 
-const NotificationsSidebar = () => {
+const SettingsSidebar = () => {
   const { sectionId } = useParams();
-
   return (
     <aside id="sidebar">
       <ul id="sidebar__list">
-        {notifSections.map((section) => (
+        {settingSections.map((section) => (
           <li key={section.id} className="sidebar__list-item">
             <StyledLink
               $active={sectionId === section.id}
               to={section.url}
               className="link"
             >
+              <span className="link_icon">{section.icon}</span>
               {section.text}
             </StyledLink>
           </li>
@@ -24,4 +24,4 @@ const NotificationsSidebar = () => {
   );
 };
 
-export default NotificationsSidebar;
+export default SettingsSidebar;
