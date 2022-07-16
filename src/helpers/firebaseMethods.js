@@ -2,6 +2,7 @@ import { db } from "server/firebase.config";
 import { doc, setDoc, getDoc, collection } from "firebase/firestore";
 
 const usersDbRef = collection(db, "users");
+const postsDbRef = collection(db, "posts");
 
 export const setAuthErrorMessage = (errorCode) => {
   let errorMessage;
@@ -48,7 +49,7 @@ export const fetchUserInfo = async (userId) => {
 
 export const updateProfileInfo = async (profileData) => {
   try {
-    const { bio, photoURL, name, username,id } = profileData;
+    const { bio, photoURL, name, username, id } = profileData;
     const docRef = doc(usersDbRef, id);
     await setDoc(
       docRef,
@@ -62,8 +63,19 @@ export const updateProfileInfo = async (profileData) => {
         merge: true,
       }
     );
-    const newUserProfile = await fetchUserInfo(id)
-    return newUserProfile
+    const newUserProfile = await fetchUserInfo(id);
+    return newUserProfile;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const uploadNewPost = async (post) => {
+  try {
+    const docRef = doc(postsDbRef, post.postId);
+    await setDoc(docRef, post);
+    return true;
   } catch (error) {
     console.log(error);
     return false;

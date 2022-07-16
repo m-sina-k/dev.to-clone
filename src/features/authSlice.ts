@@ -10,7 +10,7 @@ import {
   registerUserInFirestore,
   fetchUserInfo,
   updateProfileInfo,
-} from "helpers/authMethods";
+} from "helpers/firebaseMethods";
 
 import defaultProfilePic from "assets/images/user.png";
 

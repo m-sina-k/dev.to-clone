@@ -36,8 +36,8 @@ export const ButtonPrimary = styled(Button)`
 `;
 
 export const ButtonSecondary = styled(Button)`
-  color: ${({ theme }) => theme.colors.text};
-  fill: ${({ theme }) => theme.colors.text};
+  color: ${({ theme,isActive }) => isActive ? theme.colors.text : theme.colors.text_muted};
+  fill: ${({ theme,isActive }) => isActive ? theme.colors.text : theme.colors.text_muted};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};

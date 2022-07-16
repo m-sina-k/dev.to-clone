@@ -21,6 +21,7 @@ interface PropTypes {
 }
 
 const ProfileSettings: React.FC<PropTypes> = ({ currentUser }) => {
+  document.title = "پروفایل - انجمن توسعه دهندگان";
   const dispatch = useAppDispatch();
   const { updateProfileLoading } = useSelector(getAuthState);
 

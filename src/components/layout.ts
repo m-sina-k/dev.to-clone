@@ -22,6 +22,12 @@ interface BlockProps {
 
 interface BannerProps {
   variant: "danger" | "success";
+  m?: string;
+}
+
+interface TooltipProps {
+  top?: string;
+  bottom?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -100,7 +106,7 @@ export const Banner = styled.div<BannerProps>`
       ? theme.layout.global_colors.red
       : theme.layout.global_colors.green};
   padding: 1rem;
-  margin-top: 3.5rem;
+  margin: ${({ m }) => (m ? m : "3.5rem 0 0")};
   p {
     color: white;
     text-align: center;
@@ -118,4 +124,23 @@ export const FormLoading = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  z-index: 50;
+`;
+
+export const Tooltip = styled.span<TooltipProps>`
+  position: absolute;
+  top: ${({ top }) => (top ? top : "110%")};
+  bottom: ${({ bottom }) => (bottom ? bottom : null)};
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.body};
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-size: 13px;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  transition-delay: 0.3s;
 `;

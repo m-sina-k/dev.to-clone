@@ -7,6 +7,7 @@ import lightThemePic from "assets/images/light_theme.png";
 import darkThemePic from "assets/images/dark_theme.png";
 
 const CustomSettings = () => {
+  document.title = "تنظیمات - انجمن توسعه دهندگان";
   const dispatch = useDispatch();
   const themeMode = useSelector(getAppTheme);
 

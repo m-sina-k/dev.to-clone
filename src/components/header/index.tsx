@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toggleShowSidebarNav } from "features/uiSlice";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowSidebarNav, getExceptionRoutes } from "features/uiSlice";
 
 // assets
 import logo from "assets/images/logo.png";
@@ -15,7 +15,13 @@ import SearchInput from "components/utils/SearchInput";
 
 const Index = () => {
   const dispatch = useDispatch();
+  const exceptionRoutes = useSelector(getExceptionRoutes);
+  const { pathname } = useLocation();
+
   const openSidebarNav = () => dispatch(toggleShowSidebarNav(true));
+
+  if (exceptionRoutes.indexOf(pathname) > -1) return null;
+
   return (
     <Header>
       <Container>

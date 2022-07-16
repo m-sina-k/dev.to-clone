@@ -1,8 +1,17 @@
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getExceptionRoutes } from "features/uiSlice";
+
 import { Container } from "components/layout";
 import { Footer } from "./Footer.styles";
 import { FiCoffee, FiHeart } from "react-icons/fi";
 
 const Index = () => {
+  const { pathname } = useLocation();
+  const exceptionRoutes = useSelector(getExceptionRoutes);
+
+  if (exceptionRoutes.indexOf(pathname) > -1) return null;
+
   return (
     <Footer>
       <Container>
@@ -13,7 +22,7 @@ const Index = () => {
         <p id="credit-text">
           ساخته شده با <FiHeart id="heart_icon" /> و{" "}
           <FiCoffee id="coffee_icon" />
-          توسط 
+          توسط
           <a href="https://github.com/m-sina-k/" id="github_link">
             سینا کاظمی
           </a>

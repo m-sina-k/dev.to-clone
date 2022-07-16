@@ -3,7 +3,9 @@ import { ButtonTertiary } from "components/utils/Buttons";
 import SearchInput from "components/utils/SearchInput";
 import { Search } from "./Search.styles";
 
-const index = () => {
+const Index = () => {
+  document.title = "جستجو - انجمن توسعه دهندگان";
+
   return (
     <Container pageContainer>
       <Search>
@@ -33,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

@@ -9,6 +9,7 @@ import Header from "components/header";
 import SidebarNav from "components/sidebar_nav";
 import Footer from "components/footer";
 import PrivateRoute from "components/utils/PrivateRoute";
+
 // pages
 import Home from "pages/home";
 import Notifications from "pages/notifications";
@@ -17,6 +18,7 @@ import SignUp from "pages/auth/SignUp";
 import SignIn from "pages/auth/SignIn";
 import SignOutConfirm from "pages/SignOutConfirm";
 import Settings from "pages/setting";
+import NewPost from "pages/new_post";
 
 // assets
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -40,9 +42,12 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/settings/:sectionId" element={<Settings />} />
           </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/new-post" element={<NewPost />} />
+          </Route>
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
     </ThemeProvider>
   );
 };

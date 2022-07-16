@@ -7,6 +7,9 @@ interface DdProps {
   left?: string;
   right?: string;
   bottom?: string;
+  minWidth?: string;
+  maxHeight?: string;
+  p?: string;
 }
 
 const DropdownStyle = styled.div<DdProps>`
@@ -19,12 +22,19 @@ const DropdownStyle = styled.div<DdProps>`
   right: ${({ right }) => (right ? right : null)};
   bottom: ${({ bottom }) => (bottom ? bottom : null)};
   width: max-content;
-  min-width: 250px;
-  overflow: hidden;
+  min-width: ${({ minWidth }) => (minWidth ? minWidth : "250px")};
+  z-index: 50;
+  ${({ p }) => p && { padding: p }};
+  ${({ maxHeight }) => maxHeight && { maxHeight: maxHeight }};
+  overflow: ${({ maxHeight }) => (maxHeight ? "auto" : "scroll")};
 
   .dd_list {
     cursor: default;
     padding: 0.5rem;
+
+    li::before {
+      display: none !important;
+    }
   }
 `;
 
@@ -37,14 +47,22 @@ const Dropdown: React.FC<DdProps> = ({
   left,
   right,
   bottom,
+  minWidth,
+  p,
+  maxHeight,
   children,
 }) => {
-  
   return (
-    <DropdownStyle top={top} left={left} bottom={bottom} right={right} >
-      <ul className="dd_list">
-        {children}
-      </ul>
+    <DropdownStyle
+      top={top}
+      left={left}
+      bottom={bottom}
+      right={right}
+      minWidth={minWidth}
+      maxHeight={maxHeight}
+      p={p}
+    >
+      <ul className="dd_list">{children}</ul>
     </DropdownStyle>
   );
 };

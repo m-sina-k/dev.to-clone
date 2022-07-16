@@ -78,6 +78,8 @@ textarea{
 
 button{
   cursor: pointer;
+  border-radius: 6px;
+  background-color: transparent;
 }
 
 h1,
