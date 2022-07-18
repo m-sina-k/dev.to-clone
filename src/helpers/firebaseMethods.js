@@ -1,5 +1,5 @@
 import { db } from "server/firebase.config";
-import { doc, setDoc, getDoc, collection } from "firebase/firestore";
+import { doc, setDoc, getDoc, getDocs, collection } from "firebase/firestore";
 
 const usersDbRef = collection(db, "users");
 const postsDbRef = collection(db, "posts");
@@ -76,6 +76,18 @@ export const uploadNewPost = async (post) => {
     const docRef = doc(postsDbRef, post.postId);
     await setDoc(docRef, post);
     return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const fetchPostsFromFirestore = async () => {
+  try {
+    let posts = [];
+    const postsSnapshot = await getDocs(postsDbRef);
+    postsSnapshot.forEach((post) => posts.push(post.data()));
+    return posts
   } catch (error) {
     console.log(error);
     return false;

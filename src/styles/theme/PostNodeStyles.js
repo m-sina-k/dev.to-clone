@@ -60,7 +60,11 @@ export const PostNodeStyles = css`
     border-radius: 6px;
     padding: 4px 5px 5px;
     line-height: 1.5;
+  }
+
+  pre > code {
     display: block;
+    margin: 0.7rem 0;
   }
 
   img {

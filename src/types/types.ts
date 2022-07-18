@@ -16,13 +16,19 @@ export enum NewPostDisplayModeType {
 }
 
 export interface PostType {
-  authorId: string,
-  authorUsername: string,
-  postId:string,
-  title: string,
-  cover: string | null,
-  tags: PostTagsType[],
-  content: string,
-  publishDate: object,
+  authorId: string;
+  authorName: string;
+  authorUsername: string;
+  authorProfilePic: string;
+  postId: string;
+  title: string;
+  cover: string | null;
+  tags: PostTagsType[];
+  content: string;
+  publishDate: string;
+  reactions: {
+    hearts: number;
+    unicorns: number;
+    comments: object[];
+  };
 }
-

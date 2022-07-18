@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import { getAppTheme } from "features/uiSlice";
+import { useAppDispatch } from "app/store";
+import { fetchPosts } from "features/fetchPostsSlice";
 
 // components
 import GlobalStyle from "styles/GlobalStyle";
@@ -24,7 +27,12 @@ import NewPost from "pages/new_post";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const App = () => {
+  const dispatch = useAppDispatch();
   const theme = useSelector(getAppTheme);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

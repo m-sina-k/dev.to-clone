@@ -8,6 +8,10 @@ import styled from "styled-components";
 const NavigationStyle = styled.div`
   #links_list {
     .link_item {
+      &:first-child .sidebar_link {
+        margin-top: 0;
+      }
+      
       .sidebar_link {
         .link_icon {
           margin-left: 0.5rem;

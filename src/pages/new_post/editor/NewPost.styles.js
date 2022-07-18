@@ -49,7 +49,6 @@ export const NewPost = styled.main`
       height: 75vh;
       margin-top: 2rem;
       overflow: auto;
-      position: relative;
       ${PostNodeStyles};
 
       .block_wrapper {

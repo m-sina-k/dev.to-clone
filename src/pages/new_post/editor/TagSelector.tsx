@@ -33,8 +33,10 @@ export const Tag = styled.section`
   margin: 6px 3px;
   font-size: 14px;
   direction: ltr;
+  
 
   .tag_name {
+    transition: all 0.3s ease;
     color: ${({ theme }) => theme.colors.text_muted};
   }
 
@@ -42,7 +44,7 @@ export const Tag = styled.section`
     display: flex;
     margin-left: 5px;
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.text_muted};
+    color: ${({ theme }) => theme.colors.text};
 
     &:hover {
       color: ${({ theme }) => theme.layout.global_colors.red};

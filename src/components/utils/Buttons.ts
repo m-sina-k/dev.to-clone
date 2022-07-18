@@ -36,8 +36,10 @@ export const ButtonPrimary = styled(Button)`
 `;
 
 export const ButtonSecondary = styled(Button)`
-  color: ${({ theme,isActive }) => isActive ? theme.colors.text : theme.colors.text_muted};
-  fill: ${({ theme,isActive }) => isActive ? theme.colors.text : theme.colors.text_muted};
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.text : theme.colors.text_muted};
+  fill: ${({ theme, isActive }) =>
+    isActive ? theme.colors.text : theme.colors.text_muted};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};
@@ -68,5 +70,17 @@ export const ButtonCTA = styled(Button)`
   &:hover {
     background-color: ${({ theme }) =>
       theme.layout.global_colors.primary_shade};
+  }
+`;
+
+export const GhostButton = styled(Button)`
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+  
+  &:hover {
+    fill: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.body};
+    border: 1.5px solid ${({ theme }) => theme.colors.border_color};
   }
 `;

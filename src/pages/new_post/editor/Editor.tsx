@@ -86,16 +86,23 @@ const Editor: React.FC<PropTypes> = ({
   };
 
   const handleUploadPost = async () => {
-    const { id, username } = currentUser;
+    const { id, username, photoURL, displayName } = currentUser;
     const post: PostType = {
       authorId: id,
+      authorName: displayName,
       authorUsername: username,
+      authorProfilePic: photoURL,
       postId: nanoid(),
       title: postTitle,
       cover: postCover,
       tags: postTags,
       content: postContent,
-      publishDate: new Date(),
+      publishDate: new Date().toLocaleString(),
+      reactions: {
+        hearts: 0,
+        unicorns: 0,
+        comments: [],
+      },
     };
     const postUploaded = await dispatch(uploadPost(post)).unwrap();
     if (postUploaded) window.location.href = "/";
@@ -116,17 +123,6 @@ const Editor: React.FC<PropTypes> = ({
   return (
     <>
       <Block className="new-post_block" p="0">
-        
-        {/* show loading while uploading the post */}
-        {postUploadLoading && (
-          <FormLoading>
-            <Oval
-              color="#3b49df"
-              secondaryColor="#3b49df33"
-              ariaLabel="لطفا صبر کنید..."
-            />
-          </FormLoading>
-        )}
         <div className="block_wrapper">
           {/* add cover button */}
           <AddCover postCover={postCover} setPostCover={setPostCover} />
@@ -157,9 +153,15 @@ const Editor: React.FC<PropTypes> = ({
 
       {/* publish button */}
       <Row id="publish-btn_container" jc="flex-end">
-        <ButtonCTA p="0.5rem 1.5rem" onClick={publishPost}>
-          انتشار
-        </ButtonCTA>
+        {postUploadLoading ? (
+          <ButtonCTA p="0.5rem 1.5rem">
+            <Oval width={15} height={15} color="white" />
+          </ButtonCTA>
+        ) : (
+          <ButtonCTA p="0.5rem 1.5rem" onClick={publishPost}>
+            انتشار
+          </ButtonCTA>
+        )}
       </Row>
     </>
   );

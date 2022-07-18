@@ -1,6 +1,9 @@
 import { Container } from "components/layout";
 import { Home } from "./Home.styles";
+
 import Navigation from "components/utils/Navigation";
+import PostsContainer from "./posts_container/PostsContainer";
+import HomeSidebars from "./home_sidebars";
 
 const Index = () => {
   return (
@@ -10,8 +13,14 @@ const Index = () => {
           <aside id="home_navigation">
             <Navigation />
           </aside>
-          <div className="posts"></div>
-          <div className="sidebar"></div>
+
+          <div className="posts">
+            <PostsContainer />
+          </div>
+          
+          <div className="sidebar">
+            <HomeSidebars />
+          </div>
         </div>
       </Home>
     </Container>

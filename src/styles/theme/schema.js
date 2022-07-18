@@ -14,7 +14,6 @@ const layout = {
     red_tint: "#dc262633",
     red: "#dc2626",
     red_shade: "#b91c1c",
-    glass_btn_hover: "#ffffff33",
   },
   spacing: {
     xxs: "0.25rem",
@@ -54,6 +53,7 @@ export const themes = {
       text_muted: "#525252",
       block_color: "#ffffff",
       footer_color: "#E5E5E5",
+      home_sidebar_color:'red',
       border_color:'rgba(23, 23, 23, 0.2)',
       block_boxShadow:"rgba(23, 23, 23, 0.2) 0px 0px 0px 1px"
     },
@@ -68,6 +68,7 @@ export const themes = {
       text_muted: "#bdbdbd",
       block_color: "#171717",
       footer_color:"#171717",
+      home_sidebars_color:'#171717',
       border_color:"rgba(255, 255, 255, 0.15)",
       block_boxShadow:"rgba(255, 255, 255, 0.15) 0px 0px 0px 1px"
     },

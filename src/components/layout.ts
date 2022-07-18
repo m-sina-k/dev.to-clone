@@ -34,8 +34,8 @@ export const Container = styled.div<ContainerProps>`
   padding: 0 ${({ theme }) => theme.layout.spacing.md};
   max-width: ${({ theme }) => theme.layout.container_width};
   margin: 0 auto;
-  margin-top: ${(props) =>
-    props.pageContainer ? props.theme.layout.spacing.page_offset_top : 0};
+  margin-top: ${({pageContainer,theme}) =>
+  pageContainer ? theme.layout.spacing.page_offset_top : 0} !important;
   width: 100%;
 
   @media only screen and (max-width: ${({ theme }) =>
