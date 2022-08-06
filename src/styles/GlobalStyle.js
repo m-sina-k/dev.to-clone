@@ -1,6 +1,12 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, keyframes } from "styled-components";
 import EstedadMedium from "assets/fonts/Estedad-Medium.woff";
 import EstedadBold from "assets/fonts/Estedad-Bold.woff";
+
+const skeleton = keyframes`
+to {
+  opacity: 0.5;
+}
+`;
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -80,6 +86,11 @@ button{
   cursor: pointer;
   border-radius: 6px;
   background-color: transparent;
+
+  &:disabled{
+    cursor:not-allowed;
+    opacity:0.5;
+  }
 }
 
 h1,
@@ -114,6 +125,9 @@ label{
 .ltr{
   direction: ltr;
 }
-
+.skeleton {
+    animation: ${skeleton} 1s infinite alternate;
+  }
 `;
+
 export default GlobalStyle;

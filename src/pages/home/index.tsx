@@ -6,6 +6,7 @@ import PostsContainer from "./posts_container/PostsContainer";
 import HomeSidebars from "./home_sidebars";
 
 const Index = () => {
+  document.title = "👩‍💻👨‍💻 انجمن توسعه دهندگان";
   return (
     <Container pageContainer>
       <Home>
@@ -17,7 +18,7 @@ const Index = () => {
           <div className="posts">
             <PostsContainer />
           </div>
-          
+
           <div className="sidebar">
             <HomeSidebars />
           </div>

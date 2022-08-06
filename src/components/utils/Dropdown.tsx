@@ -48,9 +48,9 @@ const Dropdown: React.FC<DdProps> = ({
   right,
   bottom,
   minWidth,
-  p,
   maxHeight,
   children,
+  p,
 }) => {
   return (
     <DropdownStyle
@@ -61,6 +61,7 @@ const Dropdown: React.FC<DdProps> = ({
       minWidth={minWidth}
       maxHeight={maxHeight}
       p={p}
+      className="dropdown"
     >
       <ul className="dd_list">{children}</ul>
     </DropdownStyle>

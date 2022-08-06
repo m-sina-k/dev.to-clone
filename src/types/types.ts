@@ -15,20 +15,36 @@ export enum NewPostDisplayModeType {
   EditMode = "edit-mode",
 }
 
+export interface CommentType {
+  id: string;
+  writerName: string;
+  writerProfilePic: string;
+  writerUsername: string;
+  text: string;
+  likes: string[];
+  submitDate: string;
+}
+
 export interface PostType {
-  authorId: string;
-  authorName: string;
-  authorUsername: string;
-  authorProfilePic: string;
-  postId: string;
-  title: string;
-  cover: string | null;
-  tags: PostTagsType[];
-  content: string;
-  publishDate: string;
+  author: {
+    id: string;
+    name: string;
+    username: string;
+    profilePic: string;
+    registerDate: string;
+  };
+  postDetails: {
+    id: string;
+    title: string;
+    cover: string | null;
+    tags: PostTagsType[];
+    content: string;
+    publishDate: string;
+  };
   reactions: {
-    hearts: number;
-    unicorns: number;
-    comments: object[];
+    hearts: string[];
+    unicorns: string[];
+    saves: string[];
+    comments: CommentType[];
   };
 }

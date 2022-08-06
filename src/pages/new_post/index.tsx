@@ -4,9 +4,9 @@ import { getUploadPostState } from "features/uploadPostSlice";
 
 import Editor from "./editor/Editor";
 import Previewer from "./previewer";
-import { Container, Banner } from "components/layout";
 import { NewPost } from "./editor/NewPost.styles";
 
+import { Container, Banner } from "components/layout";
 import {
   PostTagsType,
   NewPostDisplayModeType as DisplayModeType,

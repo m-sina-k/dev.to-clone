@@ -2,28 +2,18 @@ import styled from "styled-components";
 
 export const PostBlock = styled.article`
   .post_cover_container {
-    max-height: 670px;
+    height: 300px;
 
     img {
+      width: 100%;
+      max-height: 100%;
+      object-fit: cover;
       border-radius: 6px 6px 0 0;
     }
   }
 
   .post_details {
     padding: 1rem;
-
-    .author_info_container {
-      display: flex;
-      align-items: center;
-      .author_profile-pic {
-        width: 35px;
-        height: 35px;
-        margin-left: 0.5rem;
-      }
-      .publish_date {
-        color: ${({ theme }) => theme.colors.text_muted};
-      }
-    }
 
     .post_title {
       margin: 0.5rem 0;
@@ -36,6 +26,7 @@ export const PostBlock = styled.article`
       .tag {
         margin: 0;
         color: ${({ theme }) => theme.colors.text_muted};
+        padding: 1px 4px;
 
         &:hover .tag_name {
           color: ${({ theme }) => theme.colors.text};
@@ -49,15 +40,20 @@ export const PostBlock = styled.article`
 
       .reaction_buttons_container {
         display: flex;
-        
+
         .reactions_button {
-          padding: 4px 12px;
-          font-size: 13px;
+          display: flex;
+          align-items: center;
+          padding: 6px 12px;
+          font-size: 14px;
           color: ${({ theme }) => theme.colors.text_muted};
 
           .reactions_icon {
             display: flex;
-            margin-left: 6px;
+          }
+
+          .button_text {
+            margin-right: 5px;
           }
         }
       }
@@ -71,14 +67,19 @@ export const PostBlock = styled.article`
 
         .save_post_button {
           background-color: ${({ theme }) => theme.colors.footer_color};
+          color: ${({ theme }) => theme.colors.text};
           padding: 4px 16px;
+          border: 1px solid transparent;
+
+          &:hover {
+            border-color: ${({ theme }) => theme.colors.border_color};
+          }
         }
       }
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.md}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.md}) {
     .post_details {
       .post_title {
         font-size: 1rem;

@@ -2,11 +2,10 @@ import { useState, useRef } from "react";
 import { useOnClickOutside } from "hooks/useClickOutside";
 import TagSelector from "./TagSelector";
 import { Row } from "components/layout";
-import { Tag } from "./TagSelector";
+import Tag from "components/utils/Tag";
 
 import { PostTagsType } from "types/types";
 import { tags } from "data/tags";
-import { IoMdClose } from "react-icons/io";
 
 interface PropTypes {
   postTags: PostTagsType[];
@@ -34,13 +33,14 @@ const AddTag: React.FC<PropTypes> = ({ postTags, addTag, removeTag }) => {
     <div id="current_tags">
       <Row id="current_tags_row" ref={tagSelectorRef}>
         {postTags.map((tag) => (
-          <Tag key={tag.id} style={{ backgroundColor: tag.backColor }}>
-            <span style={{ color: tag.color }}>#</span>
-            <span className="tag_name">{tag.name}</span>
-            <span className="remove_tag" onClick={() => removeTag(tag.id)}>
-              <IoMdClose size={18} />
-            </span>
-          </Tag>
+          <Tag
+            key={tag.id}
+            name={tag.name}
+            color={tag.color}
+            backColor={tag.backColor}
+            removable
+            hasBg
+          />
         ))}
 
         {postTags.length < 4 && (
@@ -52,7 +52,7 @@ const AddTag: React.FC<PropTypes> = ({ postTags, addTag, removeTag }) => {
             </span>
           </button>
         )}
-        {showTagSelector && (postTags.length < 4) && (
+        {showTagSelector && postTags.length < 4 && (
           <TagSelector addTag={addTag} unSelectedTags={unSelectedTag} />
         )}
       </Row>

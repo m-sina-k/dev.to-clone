@@ -22,6 +22,7 @@ import SignIn from "pages/auth/SignIn";
 import SignOutConfirm from "pages/SignOutConfirm";
 import Settings from "pages/setting";
 import NewPost from "pages/new_post";
+import SinglePost from "pages/single_post";
 
 // assets
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -53,6 +54,7 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/new-post" element={<NewPost />} />
           </Route>
+          <Route path="/post/:postId" element={<SinglePost />} />
         </Routes>
         <Footer />
       </Router>

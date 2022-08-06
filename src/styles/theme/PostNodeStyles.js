@@ -7,12 +7,21 @@ export const PostNodeStyles = css`
   ul {
     list-style: none;
 
-    li::before {
-      content: "•";
-      display: inline-block;
-      margin-left: 6px;
-      font-size: 20px;
-      color: ${({ theme }) => theme.colors.text_muted};
+    li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+
+      &::before {
+        content: "•";
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        font-size: 20px;
+        color: ${({ theme }) => theme.colors.text_muted};
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 
@@ -60,17 +69,32 @@ export const PostNodeStyles = css`
     border-radius: 6px;
     padding: 4px 5px 5px;
     line-height: 1.5;
+    margin: 0 6px;
   }
 
-  pre > code {
-    display: block;
-    margin: 0.7rem 0;
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
+
+    code {
+      display: block;
+      margin: 0.85rem 0;
+      padding: 0.5rem 1rem;
+    }
   }
 
   img {
     margin: 0.5rem 0;
     width: 100%;
-    max-height: 300px;
+    max-height: 350px;
     object-fit: cover;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+  h2,p {
+    margin-bottom: 10px;
   }
 `;

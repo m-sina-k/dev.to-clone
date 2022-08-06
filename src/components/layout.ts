@@ -34,13 +34,12 @@ export const Container = styled.div<ContainerProps>`
   padding: 0 ${({ theme }) => theme.layout.spacing.md};
   max-width: ${({ theme }) => theme.layout.container_width};
   margin: 0 auto;
-  margin-top: ${({pageContainer,theme}) =>
-  pageContainer ? theme.layout.spacing.page_offset_top : 0} !important;
+  margin-top: ${({ pageContainer, theme }) =>
+    pageContainer ? theme.layout.spacing.page_offset_top : 0} !important;
   width: 100%;
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.md}) {
-    padding: 0 ${({ theme }) => theme.layout.spacing.xs};
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.md}) {
+    padding: 0;
   }
 `;
 
@@ -55,6 +54,7 @@ export const Block = styled.div<BlockProps>`
   box-shadow: ${({ theme }) => theme.colors.block_boxShadow};
   border-radius: 6px;
   padding: ${({ p }) => (p ? p : "1rem")};
+  max-width: 99%;
 `;
 
 export const StyledLink = styled(Link)<StyledLinkProps>`
@@ -64,8 +64,7 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
   align-items: center;
   padding: ${({ p }) => (p ? p : "8px 16px")};
   margin: ${({ m }) => (m ? m : null)};
-  background-color: ${(props) =>
-    props.$active ? props.theme.colors.block_color : "transparent"};
+  background-color: ${(props) => (props.$active ? props.theme.colors.block_color : "transparent")};
 
   &:hover {
     background-color: ${(props) =>
@@ -76,7 +75,7 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
   }
 `;
 
-const inputStyle = css`
+export const inputStyle = css`
   width: 100%;
   height: 100%;
   padding: 4px 8px;
@@ -102,9 +101,7 @@ export const Textarea = styled.textarea`
 export const Banner = styled.div<BannerProps>`
   width: 100%;
   background-color: ${({ theme, variant }) =>
-    variant === "danger"
-      ? theme.layout.global_colors.red
-      : theme.layout.global_colors.green};
+    variant === "danger" ? theme.layout.global_colors.red : theme.layout.global_colors.green};
   padding: 1rem;
   margin: ${({ m }) => (m ? m : "3.5rem 0 0")};
   p {

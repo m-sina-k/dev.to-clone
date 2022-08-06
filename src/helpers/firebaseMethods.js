@@ -1,5 +1,13 @@
 import { db } from "server/firebase.config";
-import { doc, setDoc, getDoc, getDocs, collection } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  arrayUnion,
+  arrayRemove,
+  collection,
+} from "firebase/firestore";
 
 const usersDbRef = collection(db, "users");
 const postsDbRef = collection(db, "posts");
@@ -43,8 +51,7 @@ export const fetchUserInfo = async (userId) => {
   const docRef = doc(usersDbRef, userId);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) user = docSnap.data();
-  const { username, photoURL, displayName, bio, id, email } = user;
-  return { username, photoURL, displayName, bio, id, email };
+  return user;
 };
 
 export const updateProfileInfo = async (profileData) => {
@@ -73,7 +80,7 @@ export const updateProfileInfo = async (profileData) => {
 
 export const uploadNewPost = async (post) => {
   try {
-    const docRef = doc(postsDbRef, post.postId);
+    const docRef = doc(postsDbRef, post.postDetails.id);
     await setDoc(docRef, post);
     return true;
   } catch (error) {
@@ -87,9 +94,98 @@ export const fetchPostsFromFirestore = async () => {
     let posts = [];
     const postsSnapshot = await getDocs(postsDbRef);
     postsSnapshot.forEach((post) => posts.push(post.data()));
-    return posts
+    return posts;
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+export const fetchPostById = async (id) => {
+  try {
+    let post;
+    const postRef = doc(postsDbRef, id);
+    const postSnap = await getDoc(postRef);
+    if (postSnap.exists()) post = postSnap.data();
+    return post;
+  } catch (error) {
+    console.log(error);
+    return error.message;
+  }
+};
+
+const addPostToReadingList = async (userId, postId) => {
+  try {
+    const docRef = doc(usersDbRef, userId);
+    await setDoc(
+      docRef,
+      {
+        readingList: arrayUnion(postId),
+      },
+      {
+        merge: true,
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const reactToPost = async (
+  postId,
+  reactionType,
+  operation,
+  username,
+  userId
+) => {
+  try {
+    const postRef = doc(postsDbRef, postId);
+    await setDoc(
+      postRef,
+      {
+        reactions: {
+          [reactionType]:
+            operation === "add" ? arrayUnion(username) : arrayRemove(username),
+        },
+      },
+      { merge: true }
+    );
+    if (reactionType === "saves") addPostToReadingList(userId, postId);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const submitComment = async (postId, comment) => {
+  try {
+    const postRef = doc(postsDbRef, postId);
+    await setDoc(
+      postRef,
+      {
+        reactions: {
+          comments: arrayUnion(comment),
+        },
+      },
+      { merge: true }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateComments = async (postId, comments) => {
+  try {
+    const postRef = doc(postsDbRef, postId);
+    await setDoc(
+      postRef,
+      {
+        reactions: {
+          comments,
+        },
+      },
+      { merge: true }
+    );
+  } catch (error) {
+    console.log(error);
   }
 };

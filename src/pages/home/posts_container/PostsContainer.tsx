@@ -10,8 +10,8 @@ import { PostsContainerStyle } from "./PostsContainer.style";
 import { PostType } from "types/types";
 
 const PostsContainer = () => {
-  const posts = useSelector(getAllPosts);
   const fetchLoading = useSelector(getFetchLoadingStatus);
+  const posts = useSelector(getAllPosts);
 
   return (
     <PostsContainerStyle>
@@ -29,7 +29,11 @@ const PostsContainer = () => {
               <PostBlockSkeleton key={index} />
             ))
           : posts.map((post: PostType) => (
-              <Block key={post.postId} p="0" className="post_block-container">
+              <Block
+                key={post.postDetails.id}
+                p="0"
+                className="post_block-container"
+              >
                 <PostBlock post={post} />
               </Block>
             ))}

@@ -1,11 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Block } from "components/layout";
-
-const skeleton = keyframes`
-    to {
-      opacity: 0.3;
-    }
-  `;
 
 export const SkeletonBlock = styled(Block)`
   padding: 0;
@@ -61,10 +55,6 @@ export const SkeletonBlock = styled(Block)`
       display: inline-block;
       background-color: ${({ theme }) => theme.colors.body};
     }
-  }
-
-  .skeleton {
-    animation: ${skeleton} 1s infinite alternate;
   }
 
   @media only screen and (max-width: 515px) {

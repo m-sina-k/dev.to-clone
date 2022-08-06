@@ -41,8 +41,7 @@ export const SidebarNav = styled.aside<SidebarNavProps>`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (min-width: ${({ theme }) => theme.layout.break_point.lg}) {
     display: none;
   }
 `;

@@ -1,20 +1,23 @@
 import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import TextareaAutosize from "react-textarea-autosize";
+import { Oval } from "react-loader-spinner";
+
 import { useAppDispatch } from "app/store";
 import { uploadPost } from "features/uploadPostSlice";
-import TextareaAutosize from "react-textarea-autosize";
-import EditorControls from "./EditorControls";
-import AddCover from "./AddCover";
-import AddTag from "./AddTag";
 import { getAuthState } from "features/authSlice";
 import {
   setPostUploadError,
   getUploadPostState,
 } from "features/uploadPostSlice";
-import { Block, Row, FormLoading } from "components/layout";
+
+import EditorControls from "./EditorControls";
+import AddCover from "./AddCover";
+import AddTag from "./AddTag";
+
+import { Block, Row } from "components/layout";
 import { ButtonCTA } from "components/utils/Buttons";
 import { PostTagsType, PostType } from "types/types";
-import { Oval } from "react-loader-spinner";
 
 // tiptap config
 import { useEditor, EditorContent } from "@tiptap/react";
@@ -86,22 +89,28 @@ const Editor: React.FC<PropTypes> = ({
   };
 
   const handleUploadPost = async () => {
-    const { id, username, photoURL, displayName } = currentUser;
+    const { id, username, photoURL, displayName, registerDate } = currentUser;
     const post: PostType = {
-      authorId: id,
-      authorName: displayName,
-      authorUsername: username,
-      authorProfilePic: photoURL,
-      postId: nanoid(),
-      title: postTitle,
-      cover: postCover,
-      tags: postTags,
-      content: postContent,
-      publishDate: new Date().toLocaleString(),
+      author: {
+        id,
+        name: displayName || username,
+        username,
+        profilePic: photoURL,
+        registerDate,
+      },
+      postDetails: {
+        id: nanoid(),
+        title: postTitle,
+        cover: postCover,
+        tags: postTags,
+        content: postContent,
+        publishDate: new Date().toLocaleString(),
+      },
       reactions: {
-        hearts: 0,
-        unicorns: 0,
+        hearts: [],
+        unicorns: [],
         comments: [],
+        saves: [],
       },
     };
     const postUploaded = await dispatch(uploadPost(post)).unwrap();

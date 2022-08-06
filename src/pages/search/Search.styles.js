@@ -22,8 +22,7 @@ export const Search = styled.div`
     text-align: center;
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     #search_input_container {
       display: block;
     }

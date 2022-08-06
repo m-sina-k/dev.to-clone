@@ -24,6 +24,8 @@ interface UserCredentials {
   email: string;
   username: string;
   photoURL: string;
+  readingList: string[];
+  registerDate: string;
 }
 
 interface State {
@@ -62,6 +64,8 @@ export const userSignUp = createAsyncThunk(
         id: response.user.uid,
         username: email.split("@")[0],
         photoURL: defaultProfilePic,
+        readingList: [],
+        registerDate: new Date().toISOString().split("T")[0],
       };
       const registrationSucceeded = await registerUserInFirestore(
         userCredentials
@@ -82,7 +86,7 @@ export const userSignIn = createAsyncThunk(
     const { email, password } = formData;
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      const userCredentials: UserCredentials = await fetchUserInfo(user.uid);
+      const userCredentials: UserCredentials = await fetchUserInfo(user.uid) as UserCredentials;
       return userCredentials;
     } catch (error: any) {
       console.log(error);
@@ -93,9 +97,9 @@ export const userSignIn = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   "authSlice/updateProfile",
-  async (profileData: ProfileData,{rejectWithValue}) => {
+  async (profileData: ProfileData, { rejectWithValue }) => {
     const profileUpdated: any = await updateProfileInfo(profileData);
-    if(!profileUpdated) return rejectWithValue('خطا در بروزرسانی پروفایل.')
+    if (!profileUpdated) return rejectWithValue("خطا در بروزرسانی پروفایل.");
     return profileUpdated;
   }
 );

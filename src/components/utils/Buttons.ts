@@ -75,12 +75,12 @@ export const ButtonCTA = styled(Button)`
 
 export const GhostButton = styled(Button)`
   transition: all 0.3s ease;
-  border: 1.5px solid transparent;
+  fill: ${({ theme }) => theme.colors.text_muted};
+  color: ${({ theme }) => theme.colors.text_muted};
   
   &:hover {
     fill: ${({ theme }) => theme.colors.text};
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.body};
-    border: 1.5px solid ${({ theme }) => theme.colors.border_color};
   }
 `;

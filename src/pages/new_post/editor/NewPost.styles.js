@@ -116,6 +116,7 @@ export const NewPost = styled.main`
             margin-right: 6px;
             position: relative;
             color: ${({ theme }) => theme.colors.text_muted};
+
           }
         }
       }

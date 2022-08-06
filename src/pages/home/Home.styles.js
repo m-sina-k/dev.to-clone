@@ -7,14 +7,12 @@ export const Home = styled.main`
     grid-column-gap: 15px;
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.xl}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.xl}) {
     #home_container {
       grid-template-columns: 1fr 4fr;
     }
   }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     #home_container {
       grid-template-columns: 1fr;
     }
