@@ -11,10 +11,12 @@ const NavigationStyle = styled.div`
       &:first-child .sidebar_link {
         margin-top: 0;
       }
-      
+
       .sidebar_link {
         .link_icon {
           margin-left: 0.5rem;
+          width: 24px;
+          height: 24px;
         }
       }
     }

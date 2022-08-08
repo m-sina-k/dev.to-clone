@@ -2,13 +2,12 @@ import { ReactComponent as HomeIcon } from "assets/icons/links/home.svg";
 import { ReactComponent as ReadingListIcon } from "assets/icons/links/readingList.svg";
 import { ReactComponent as TagsIcon } from "assets/icons/links/tags.svg";
 import { ReactComponent as FaqIcon } from "assets/icons/links/faq.svg";
+import { ReactComponent as PodcastIcon } from "assets/icons/links/podcasts.svg";
+import { ReactComponent as VideoIcon } from "assets/icons/links/videos.svg";
+import { ReactComponent as AboutIcon } from "assets/icons/links/about.svg";
+import { ReactComponent as ContactIcon } from "assets/icons/links/contact.svg";
 
-import {
-  FaTwitter,
-  FaTwitch,
-  FaFacebookSquare,
-  FaGithub,
-} from "react-icons/fa";
+import { FaTwitter, FaTwitch, FaFacebookSquare, FaGithub } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 
 export const routes = [
@@ -24,17 +23,42 @@ export const routes = [
     text: "ذخیره شده ها",
     icon: <ReadingListIcon />,
   },
+
   {
     id: 3,
+    url: "#",
+    text: "پادکست",
+    icon: <PodcastIcon />,
+  },
+  {
+    id: 4,
+    url: "#",
+    text: "ویدئو",
+    icon: <VideoIcon />,
+  },
+  {
+    id: 5,
     url: "/tags",
     text: "دسته بندی ها",
     icon: <TagsIcon />,
   },
   {
-    id: 4,
+    id: 6,
     url: "/faq",
     text: "سوالات متداول",
     icon: <FaqIcon />,
+  },
+  {
+    id: 7,
+    url: "/about",
+    text: "درباره ما",
+    icon: <AboutIcon />,
+  },
+  {
+    id: 8,
+    url: "#",
+    text: "تماس با ما",
+    icon: <ContactIcon />,
   },
 ];
 

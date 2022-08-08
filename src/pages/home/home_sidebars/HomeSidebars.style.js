@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const HomeSidebars = styled.aside`
   .home_sidebar {
     margin-bottom: 1rem;
-    background: ${({ theme }) =>
-      theme.name === "light" ? "#fafafa" : theme.colors.block_color};
+    background: ${({ theme }) => (theme.name === "light" ? "#fafafa" : theme.colors.block_color)};
     overflow: hidden;
+    min-height: 150px;
 
     &_heading {
       direction: ltr;
@@ -18,9 +18,7 @@ export const HomeSidebars = styled.aside`
         display: block;
         padding: 0.8rem;
         border-top: ${({ theme }) =>
-          theme.name === "dark"
-            ? `1px solid ${({ theme }) => theme.colors.border_color}`
-            : null};
+          theme.name === "dark" ? `1px solid ${({ theme }) => theme.colors.border_color}` : null};
 
         &:hover {
           background-color: ${({ theme }) => theme.colors.block_color};
@@ -30,8 +28,7 @@ export const HomeSidebars = styled.aside`
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.xl}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.xl}) {
     .home_sidebar {
       display: none;
     }

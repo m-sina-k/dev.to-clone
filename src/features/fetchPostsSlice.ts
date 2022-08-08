@@ -6,10 +6,14 @@ interface State {
   posts: PostType[];
   fetchPostsLoading: boolean;
   fetchPostsError: string | null;
+  helpPosts: PostType[];
+  discussPosts: PostType[];
 }
 
 const initialState: State = {
   posts: [],
+  helpPosts: [],
+  discussPosts: [],
   fetchPostsLoading: false,
   fetchPostsError: null,
 };
@@ -19,7 +23,15 @@ export const fetchPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     const postFetched = await fetchPostsFromFirestore();
     if (!postFetched) return rejectWithValue("خطا در دریافت پست ها از سرور.");
-    return postFetched as PostType[];
+    return {
+      allPosts: postFetched as PostType[],
+      helpPosts: postFetched.filter(
+        (post) => post.postDetails.tags.find((tag: any) => tag.name === "help") as PostType[]
+      ),
+      discussPosts: postFetched.filter(
+        (post) => post.postDetails.tags.find((tag: any) => tag.name === "discuss") as PostType[]
+      ),
+    };
   }
 );
 
@@ -34,7 +46,9 @@ const fetchPostSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, { payload }) => {
         state.fetchPostsLoading = false;
-        state.posts = payload;
+        state.posts = payload.allPosts;
+        state.discussPosts = payload.discussPosts;
+        state.helpPosts = payload.helpPosts;
       })
       .addCase(fetchPosts.rejected, (state, { payload }) => {
         state.fetchPostsLoading = false;
@@ -44,6 +58,8 @@ const fetchPostSlice = createSlice({
 });
 
 export const getAllPosts = (state: any) => state.fetchPosts.posts;
+export const getHelpPosts = (state: any) => state.fetchPosts.helpPosts;
+export const getDiscussPosts = (state: any) => state.fetchPosts.discussPosts;
 export const getFetchLoadingStatus = (state: any) => state.fetchPosts.fetchPostsLoading;
 export const getFetchPostsError = (state: any) => state.fetchPosts.fetchPostsError;
 
