@@ -1,10 +1,9 @@
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { getAuthState } from "features/authSlice";
 import styled from "styled-components";
 import DashboardDd from "./DashboardDd";
 import { useOnClickOutside } from "hooks/useClickOutside";
-
 
 const ProfBtn = styled.section`
   border-radius: 999px;
@@ -31,18 +30,8 @@ const ProfileButton = () => {
   return (
     <ProfBtn className="profile__button">
       <button className="dd_btn" ref={ddRef}>
-        <img
-          src={photoURL}
-          alt={displayName}
-          onClick={toggleShowDd}
-        />
-        {showDd && (
-          <DashboardDd
-            username={username}
-            displayName={displayName}
-            onClose={closeDd}
-          />
-        )}
+        <img src={photoURL} alt={displayName} onClick={toggleShowDd} />
+        {showDd && <DashboardDd username={username} displayName={displayName} onClose={closeDd} />}
       </button>
     </ProfBtn>
   );

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PostNodeStyles } from "styles/theme/PostNodeStyles";
 
 export const NewPost = styled.main`
-  max-height: 100vh;
+  max-height: 120vh;
 
   .new-post_header {
     width: 100%;
@@ -49,7 +49,7 @@ export const NewPost = styled.main`
       height: 75vh;
       margin-top: 2rem;
       overflow: auto;
-      ${PostNodeStyles};
+      ${PostNodeStyles}
 
       .block_wrapper {
         padding: 2rem 3rem 1rem;
@@ -98,8 +98,9 @@ export const NewPost = styled.main`
       #post-title_input {
         width: 100%;
         margin-top: 1.5rem;
-        font-size: 2rem;
+        font-size: 1.75rem;
         background-color: transparent;
+        min-height: 45px;
       }
 
       #current_tags {
@@ -116,7 +117,6 @@ export const NewPost = styled.main`
             margin-right: 6px;
             position: relative;
             color: ${({ theme }) => theme.colors.text_muted};
-
           }
         }
       }
@@ -168,12 +168,11 @@ export const NewPost = styled.main`
     }
 
     #publish-btn_container {
-      margin-top: 1rem;
+      margin: 1rem 0;
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.xl}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.xl}) {
     .editor_tooltip {
       display: none;
     }
@@ -186,8 +185,7 @@ export const NewPost = styled.main`
       }
     }
   }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     .new-post_container {
       max-width: 100%;
 
@@ -201,8 +199,7 @@ export const NewPost = styled.main`
       }
     }
   }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.md}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.md}) {
     .new-post_header {
       #logo,
       #page_title {

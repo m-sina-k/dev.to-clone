@@ -6,10 +6,7 @@ import { Oval } from "react-loader-spinner";
 import { useAppDispatch } from "app/store";
 import { uploadPost } from "features/uploadPostSlice";
 import { getAuthState } from "features/authSlice";
-import {
-  setPostUploadError,
-  getUploadPostState,
-} from "features/uploadPostSlice";
+import { setPostUploadError, getUploadPostState } from "features/uploadPostSlice";
 
 import EditorControls from "./EditorControls";
 import AddCover from "./AddCover";
@@ -36,9 +33,7 @@ interface PropTypes {
   setPostTitle: (title: string) => void;
   postContent: string;
   setPostContent: (content: string) => void;
-  setPublishError: (
-    err: { variant: "success" | "danger"; msg: string } | null
-  ) => void;
+  setPublishError: (err: { variant: "success" | "danger"; msg: string } | null) => void;
 }
 
 const Editor: React.FC<PropTypes> = ({
@@ -138,7 +133,6 @@ const Editor: React.FC<PropTypes> = ({
 
           {/* post title input */}
           <TextareaAutosize
-            minRows={1}
             id="post-title_input"
             placeholder="عنوان پست را وارد کنید..."
             value={postTitle}
@@ -167,7 +161,7 @@ const Editor: React.FC<PropTypes> = ({
             <Oval width={15} height={15} color="white" />
           </ButtonCTA>
         ) : (
-          <ButtonCTA p="0.5rem 1.5rem" onClick={publishPost}>
+          <ButtonCTA p="0.5rem 1.5rem" id="publish_btn" onClick={publishPost}>
             انتشار
           </ButtonCTA>
         )}

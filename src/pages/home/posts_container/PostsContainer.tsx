@@ -25,15 +25,9 @@ const PostsContainer = () => {
       {/* posts */}
       <div id="posts">
         {fetchLoading
-          ? Array.from({ length: 5 }, (_, index) => (
-              <PostBlockSkeleton key={index} />
-            ))
+          ? Array.from({ length: 5 }, (_, index) => <PostBlockSkeleton key={index} />)
           : posts.map((post: PostType) => (
-              <Block
-                key={post.postDetails.id}
-                p="0"
-                className="post_block-container"
-              >
+              <Block key={post.postDetails.id} p="0" className="post_block-container">
                 <PostBlock post={post} />
               </Block>
             ))}

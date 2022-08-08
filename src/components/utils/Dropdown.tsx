@@ -26,7 +26,7 @@ const DropdownStyle = styled.div<DdProps>`
   z-index: 50;
   ${({ p }) => p && { padding: p }};
   ${({ maxHeight }) => maxHeight && { maxHeight: maxHeight }};
-  overflow: ${({ maxHeight }) => (maxHeight ? "auto" : "scroll")};
+  overflow: auto;
 
   .dd_list {
     cursor: default;

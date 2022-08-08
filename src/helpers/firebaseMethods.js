@@ -7,6 +7,9 @@ import {
   arrayUnion,
   arrayRemove,
   collection,
+  query,
+  where,
+  documentId,
 } from "firebase/firestore";
 
 const usersDbRef = collection(db, "users");
@@ -22,8 +25,7 @@ export const setAuthErrorMessage = (errorCode) => {
       errorMessage = "ایمیل وارد شده معتبر نیست.";
       break;
     case "auth/invalid-password":
-      errorMessage =
-        "گذرواژه وارد شده معتبر نیست.گذرواژه باید حداقل 6 کاراکتر باشد.";
+      errorMessage = "گذرواژه وارد شده معتبر نیست.گذرواژه باید حداقل 6 کاراکتر باشد.";
       break;
     case "auth/user-not-found":
       errorMessage = "کاربری با مشخصات وارد شده یافت نشد.";
@@ -114,13 +116,13 @@ export const fetchPostById = async (id) => {
   }
 };
 
-const addPostToReadingList = async (userId, postId) => {
+const toggleSavePost = async (userId, postId, operation) => {
   try {
     const docRef = doc(usersDbRef, userId);
     await setDoc(
       docRef,
       {
-        readingList: arrayUnion(postId),
+        readingList: operation === "add" ? arrayUnion(postId) : arrayRemove(postId),
       },
       {
         merge: true,
@@ -131,26 +133,19 @@ const addPostToReadingList = async (userId, postId) => {
   }
 };
 
-export const reactToPost = async (
-  postId,
-  reactionType,
-  operation,
-  username,
-  userId
-) => {
+export const reactToPost = async (postId, reactionType, operation, username, userId) => {
   try {
     const postRef = doc(postsDbRef, postId);
     await setDoc(
       postRef,
       {
         reactions: {
-          [reactionType]:
-            operation === "add" ? arrayUnion(username) : arrayRemove(username),
+          [reactionType]: operation === "add" ? arrayUnion(username) : arrayRemove(username),
         },
       },
       { merge: true }
     );
-    if (reactionType === "saves") addPostToReadingList(userId, postId);
+    if (reactionType === "saves") toggleSavePost(userId, postId, operation);
   } catch (error) {
     console.log(error);
   }
@@ -187,5 +182,20 @@ export const updateComments = async (postId, comments) => {
     );
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const fetchSavedPosts = async (postsId) => {
+  try {
+    let posts = [];
+    const q = query(postsDbRef, where(documentId(), "in", postsId));
+    const postsSnapshot = await getDocs(q);
+    postsSnapshot.forEach((doc) => {
+      posts = [...posts, doc.data()];
+    });
+    return posts;
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 };

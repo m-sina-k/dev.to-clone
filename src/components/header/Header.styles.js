@@ -12,6 +12,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 0.75rem;
 
   .header__right,
   .header__left {
@@ -21,6 +22,7 @@ export const Header = styled.header`
 
   #sidebar-menu__button {
     display: none;
+    margin-left: 6px;
   }
 
   .logo {
@@ -42,15 +44,14 @@ export const Header = styled.header`
     .username_container {
       display: flex;
       flex-direction: column;
-      
+
       span {
         margin-bottom: 6px;
       }
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     #search_form,
     .hidden_button {
       display: none;

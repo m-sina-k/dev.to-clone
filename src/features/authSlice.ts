@@ -1,10 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { auth } from "server/firebase.config";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {
   setAuthErrorMessage,
   registerUserInFirestore,
@@ -24,7 +21,6 @@ interface UserCredentials {
   email: string;
   username: string;
   photoURL: string;
-  readingList: string[];
   registerDate: string;
 }
 
@@ -54,22 +50,15 @@ export const userSignUp = createAsyncThunk(
   async (formData: FormData, { rejectWithValue }) => {
     const { email, password } = formData;
     try {
-      const response = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const response = await createUserWithEmailAndPassword(auth, email, password);
       const userCredentials: UserCredentials = {
         email,
         id: response.user.uid,
         username: email.split("@")[0],
         photoURL: defaultProfilePic,
-        readingList: [],
         registerDate: new Date().toISOString().split("T")[0],
       };
-      const registrationSucceeded = await registerUserInFirestore(
-        userCredentials
-      );
+      const registrationSucceeded = await registerUserInFirestore(userCredentials);
       if (!registrationSucceeded)
         return rejectWithValue({ message: "خطا در ثبت کاربر در فایر استور." });
       return userCredentials;
@@ -86,7 +75,7 @@ export const userSignIn = createAsyncThunk(
     const { email, password } = formData;
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      const userCredentials: UserCredentials = await fetchUserInfo(user.uid) as UserCredentials;
+      const userCredentials: UserCredentials = (await fetchUserInfo(user.uid)) as UserCredentials;
       return userCredentials;
     } catch (error: any) {
       console.log(error);
@@ -109,9 +98,7 @@ const lsCurrentUser = localStorage.getItem("DEV.to__user-credentials");
 const initialState: State = {
   authLoading: false,
   authError: { message: "", errorCode: "" },
-  currentUser: lsCurrentUser
-    ? (JSON.parse(lsCurrentUser) as UserCredentials)
-    : null,
+  currentUser: lsCurrentUser ? (JSON.parse(lsCurrentUser) as UserCredentials) : null,
   updateProfileStatus: null,
   updateProfileLoading: false,
 };

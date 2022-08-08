@@ -45,5 +45,6 @@ const fetchPostSlice = createSlice({
 
 export const getAllPosts = (state: any) => state.fetchPosts.posts;
 export const getFetchLoadingStatus = (state: any) => state.fetchPosts.fetchPostsLoading;
+export const getFetchPostsError = (state: any) => state.fetchPosts.fetchPostsError;
 
 export default fetchPostSlice.reducer;

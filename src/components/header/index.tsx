@@ -28,12 +28,7 @@ const Index = () => {
         <Row jc="space-between" ai="stretch">
           <section className="header__right">
             {/* sidebar menu button */}
-            <ButtonSecondary
-              m="0 8px 0"
-              p="0 8px"
-              id="sidebar-menu__button"
-              onClick={openSidebarNav}
-            >
+            <ButtonSecondary m="0" p="0 8px" id="sidebar-menu__button" onClick={openSidebarNav}>
               <MenuIcon />
             </ButtonSecondary>
 

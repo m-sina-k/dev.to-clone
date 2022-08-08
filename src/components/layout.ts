@@ -54,7 +54,7 @@ export const Block = styled.div<BlockProps>`
   box-shadow: ${({ theme }) => theme.colors.block_boxShadow};
   border-radius: 6px;
   padding: ${({ p }) => (p ? p : "1rem")};
-  max-width: 99%;
+  max-width: 100%;
 `;
 
 export const StyledLink = styled(Link)<StyledLinkProps>`
@@ -128,8 +128,8 @@ export const Tooltip = styled.span<TooltipProps>`
   position: absolute;
   top: ${({ top }) => (top ? top : "110%")};
   bottom: ${({ bottom }) => (bottom ? bottom : null)};
-  left: 50%;
-  transform: translateX(-50%);
+  left: 45%;
+  transform: translateX(-55%);
   background-color: ${({ theme }) => theme.colors.text};
   color: ${({ theme }) => theme.colors.body};
   border-radius: 6px;

@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useReadingTime from "hooks/useReadingTime";
 
-import { reactToPost } from "helpers/firebaseMethods";
+import RequireAuthModal from "components/require_auth_modal";
 import AuthorDetails from "components/AuthorDetails";
 import Tag from "components/utils/Tag";
+import { reactToPost } from "helpers/firebaseMethods";
 import { GhostButton } from "components/utils/Buttons";
 import { PostBlock } from "./PostBlock.style";
 import { getAuthState } from "features/authSlice";
@@ -23,6 +24,9 @@ const Index: React.FC<PropTypes> = ({ post }) => {
   const { currentUser } = useSelector(getAuthState);
   const [readingTime, setReadingTime] = useState(null);
   const [userSavedPost, setUserSavedPost] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const closeAuthModal = () => setShowAuthModal(false);
 
   // calculate reading time
   const postContentLength: any = useReadingTime(postDetails.content);
@@ -46,11 +50,12 @@ const Index: React.FC<PropTypes> = ({ post }) => {
         reactToPost(post.postDetails.id, "saves", "add", username, id);
         setUserSavedPost(true);
       }
-    }
+    } else setShowAuthModal(true);
   };
 
   return (
     <PostBlock>
+      {showAuthModal && <RequireAuthModal showModal={showAuthModal} closeModal={closeAuthModal} />}
       <Link to={`/post/${postDetails.id}`}>
         {/* post cover */}
         {postDetails.cover && (
