@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import { getAuthState } from "features/authSlice";
 import { ButtonPrimary, ButtonSecondary } from "components/utils/Buttons";
-import { ReactComponent as NotifIcon } from "assets/icons/notification.svg";
-import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import ProfileButton from "./dashboard_dd/DashboardButton";
+
+import { ReactComponent as NotifIcon } from "assets/icons/utils/notification.svg";
+import { ReactComponent as SearchIcon } from "assets/icons/utils/search.svg";
 
 const HeaderWidgets = () => {
   const { currentUser } = useSelector(getAuthState);
+
   return (
     <section className="widgets">
       {currentUser ? (

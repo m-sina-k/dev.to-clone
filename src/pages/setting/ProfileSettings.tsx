@@ -1,14 +1,12 @@
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "app/store";
-import {
-  updateProfile,
-  setUpdateStatus,
-  getAuthState,
-} from "features/authSlice";
-import { Block, Input, Textarea, FormLoading } from "components/layout";
-import { ButtonCTA } from "components/utils/Buttons";
 import { Oval } from "react-loader-spinner";
+
+import { useAppDispatch } from "app/store";
+import { updateProfile, setUpdateStatus, getAuthState } from "features/authSlice";
+
+import { Block, Input, Textarea } from "components/layout";
+import { ButtonCTA } from "components/utils/Buttons";
 
 interface PropTypes {
   currentUser: {
@@ -22,30 +20,27 @@ interface PropTypes {
 
 const ProfileSettings: React.FC<PropTypes> = ({ currentUser }) => {
   document.title = "پروفایل - انجمن توسعه دهندگان";
+
   const dispatch = useAppDispatch();
   const { updateProfileLoading } = useSelector(getAuthState);
+  const { displayName, username, bio, id, photoURL } = currentUser;
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const bioInputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { displayName, username, bio, id, photoURL } = currentUser;
   const [name, setName] = useState<string>(displayName || "");
   const [newUsername, setNewUsername] = useState<string>(username);
   const [biography, setBiography] = useState<string>(bio || "");
   const [profilePic, setProfilePic] = useState<string>(photoURL);
 
   const validateUsername = (username: string) => {
-    return /^[a-z0-9_-]{5,15}$/.test(username);
+    return /^[a-z0-9._-]{5,15}$/i.test(username);
   };
 
   const handlePicUpload = () => {
     const fileReader = new FileReader();
     const fileInput = fileInputRef.current;
-    if (
-      fileInput &&
-      fileInput.files &&
-      fileInput.files[0].type.startsWith("image/")
-    ) {
+    if (fileInput && fileInput.files && fileInput.files[0].type.startsWith("image/")) {
       fileReader.readAsDataURL(fileInput.files[0]);
       fileReader.addEventListener("load", (e: any) => {
         const uploadedImage = e.target.result;
@@ -82,33 +77,15 @@ const ProfileSettings: React.FC<PropTypes> = ({ currentUser }) => {
 
   return (
     <Block className="profile_details_block">
-      {updateProfileLoading && (
-        // show loading animation while updating
-        <FormLoading>
-          <Oval
-            color="#3b49df"
-            secondaryColor="#3b49df33"
-            ariaLabel="لطفا صبر کنید..."
-          />
-        </FormLoading>
-      )}
-
       <section className="heading">
         <h3 className="title">مشخصات کاربری</h3>
       </section>
-      <form
-        action="#"
-        id="acc_details_form"
-        onSubmit={handleProfileDetailsSubmit}
-      >
+
+      <form action="#" id="acc_details_form" onSubmit={handleProfileDetailsSubmit}>
         {/* display name */}
         <section className="form_group">
           <label htmlFor="display-name">نام</label>
-          <Input
-            name="display-name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Input name="display-name" value={name} onChange={(e) => setName(e.target.value)} />
         </section>
 
         {/* username */}
@@ -134,9 +111,7 @@ const ProfileSettings: React.FC<PropTypes> = ({ currentUser }) => {
           />
 
           {bioInputRef.current && (
-            <p className="character_count">
-              {bioInputRef.current.value.length} / 200
-            </p>
+            <p className="character_count">{bioInputRef.current.value.length} / 200</p>
           )}
         </section>
 
@@ -155,9 +130,16 @@ const ProfileSettings: React.FC<PropTypes> = ({ currentUser }) => {
             />
           </section>
         </section>
-        <ButtonCTA id="form_submit" p="8px 0">
-          ذخیره اطلاعات حساب کاربری
-        </ButtonCTA>
+
+        {updateProfileLoading ? (
+          <ButtonCTA type="button" p="0.5rem 1.5rem" className="loading_button">
+            <Oval width={25} height={25} color="white" />
+          </ButtonCTA>
+        ) : (
+          <ButtonCTA type="submit" id="form_submit" p="8px 0">
+            ذخیره اطلاعات حساب کاربری
+          </ButtonCTA>
+        )}
       </form>
     </Block>
   );

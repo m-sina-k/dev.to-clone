@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
 import { getUploadPostState } from "features/uploadPostSlice";
+import { PostTagsType, NewPostDisplayModeType as DisplayModeType } from "types/types";
 
 import Editor from "./editor/Editor";
-import Previewer from "./previewer";
+import Previewer from "./Previewer";
 import { NewPost } from "./editor/NewPost.styles";
 
 import { Container, Banner } from "components/layout";
-import {
-  PostTagsType,
-  NewPostDisplayModeType as DisplayModeType,
-} from "types/types";
 import NewPostHeader from "pages/new_post/NewPostHeader";
 
 const Index = () => {
@@ -18,9 +16,7 @@ const Index = () => {
 
   const { postUploadError } = useSelector(getUploadPostState);
 
-  const [displayMode, setDisplayMode] = useState<DisplayModeType>(
-    DisplayModeType.EditMode
-  );
+  const [displayMode, setDisplayMode] = useState<DisplayModeType>(DisplayModeType.EditMode);
 
   const [publishError, setPublishError] = useState<{
     variant: "danger" | "success";
@@ -35,10 +31,7 @@ const Index = () => {
   return (
     <NewPost className="new-post">
       {/* header */}
-      <NewPostHeader
-        displayMode={displayMode}
-        setDisplayMode={setDisplayMode}
-      />
+      <NewPostHeader displayMode={displayMode} setDisplayMode={setDisplayMode} />
 
       {/* show error if post title or post content is empty */}
       {!!publishError && (

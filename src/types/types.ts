@@ -32,6 +32,7 @@ export interface PostType {
     username: string;
     profilePic: string;
     registerDate: string;
+    bio: string;
   };
   postDetails: {
     id: string;
@@ -47,4 +48,10 @@ export interface PostType {
     saves: string[];
     comments: CommentType[];
   };
+}
+
+export enum SortType {
+  relevant = "relevant",
+  newest = "newest",
+  popular = "popular",
 }

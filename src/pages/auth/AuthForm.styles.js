@@ -13,6 +13,10 @@ const formButton = css`
 `;
 
 export const AuthFormStyle = styled.div`
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+
   .block_container {
     width: 640px;
     max-width: 100%;
@@ -76,13 +80,22 @@ export const AuthFormStyle = styled.div`
           margin-bottom: 0.5rem;
         }
       }
+
       .form_submit {
         ${formButton}
         background-color: ${({ theme }) => theme.layout.global_colors.primary};
 
         &:hover {
-          background-color: ${({ theme }) =>
-            theme.layout.global_colors.primary_shade};
+          background-color: ${({ theme }) => theme.layout.global_colors.primary_shade};
+        }
+      }
+
+      &_link-container {
+        margin-top: 1rem;
+
+        .link {
+          color: royalblue;
+          text-decoration: underline;
         }
       }
     }

@@ -57,6 +57,7 @@ export const CommentsStyle = styled.div`
                 padding: 0.25rem 0.5rem;
                 border-radius: 6px;
                 font-size: 15px;
+                display: inline-block;
 
                 &:hover {
                   background-color: ${({ theme }) => theme.colors.body};
@@ -84,8 +85,7 @@ export const CommentsStyle = styled.div`
           }
           &--active {
             fill: ${({ theme }) => theme.layout.global_colors.red};
-            background-color: ${({ theme }) =>
-              theme.layout.global_colors.red_tint};
+            background-color: ${({ theme }) => theme.layout.global_colors.red_tint};
           }
 
           .text {

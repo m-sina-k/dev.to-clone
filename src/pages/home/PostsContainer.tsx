@@ -1,50 +1,36 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+
 import { getAllPosts, getFetchLoadingStatus } from "features/fetchPostsSlice";
+import { sortPostArray } from "helpers";
+import { PostType, SortType } from "types/types";
 
 import { Row, Block } from "components/layout";
 import { ButtonTertiary } from "components/utils/Buttons";
 import PostBlock from "components/postBlock";
 import PostBlockSkeleton from "components/postBlock/skeleton/PostBlockSkeleton";
-import { PostsContainerStyle } from "./PostsContainer.style";
-import { PostType } from "types/types";
 
-enum FILTERS {
-  relevant = "relevant",
-  newest = "newest",
-  popular = "popular",
-}
+const PostsContainerStyle = styled.div`
+  #sort_buttons_row {
+    margin-bottom: 1rem;
+  }
+
+  .post_block-container {
+    margin-bottom: 1rem;
+  }
+`;
 
 const PostsContainer = () => {
   const posts = useSelector(getAllPosts);
   const fetchLoading = useSelector(getFetchLoadingStatus);
-  const [filter, setFilter] = useState<FILTERS>(FILTERS.relevant);
+
+  const [filter, setFilter] = useState<SortType>(SortType.relevant);
   const [filteredPost, setFilteredPosts] = useState<PostType[]>([]);
 
   useEffect(() => {
-    let sortedPosts;
-    switch (filter) {
-      case FILTERS.relevant:
-        setFilteredPosts(posts);
-        break;
-      case FILTERS.newest:
-        sortedPosts = [...posts].sort(
-          (a: PostType, b: PostType) =>
-            new Date(b.postDetails.publishDate).valueOf() -
-            new Date(a.postDetails.publishDate).valueOf()
-        );
-        setFilteredPosts(sortedPosts);
-        break;
-      case FILTERS.popular:
-        sortedPosts = [...posts].sort(
-          (a: PostType, b: PostType) =>
-            b.reactions.hearts.length +
-            b.reactions.unicorns.length -
-            (a.reactions.hearts.length + a.reactions.unicorns.length)
-        );
-        setFilteredPosts(posts);
-        break;
-    }
+    const sortedArray = sortPostArray(filter, filteredPost, posts) as PostType[];
+    setFilteredPosts(sortedArray);
   }, [filter]);
 
   useEffect(() => {
@@ -56,20 +42,20 @@ const PostsContainer = () => {
       {/* sort buttons */}
       <Row ai="center" id="sort_buttons_row">
         <ButtonTertiary
-          isActive={filter === FILTERS.relevant}
-          onClick={() => setFilter(FILTERS.relevant)}
+          isActive={filter === SortType.relevant}
+          onClick={() => setFilter(SortType.relevant)}
         >
           مرتبط
         </ButtonTertiary>
         <ButtonTertiary
-          isActive={filter === FILTERS.newest}
-          onClick={() => setFilter(FILTERS.newest)}
+          isActive={filter === SortType.newest}
+          onClick={() => setFilter(SortType.newest)}
         >
           جدیدترین
         </ButtonTertiary>
         <ButtonTertiary
-          isActive={filter === FILTERS.popular}
-          onClick={() => setFilter(FILTERS.popular)}
+          isActive={filter === SortType.popular}
+          onClick={() => setFilter(SortType.popular)}
         >
           محبوب ترین
         </ButtonTertiary>

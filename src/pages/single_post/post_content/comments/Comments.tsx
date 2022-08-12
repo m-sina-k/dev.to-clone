@@ -6,10 +6,12 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import { getAuthState } from "features/authSlice";
 import { submitComment, updateComments } from "helpers/firebaseMethods";
-import { ButtonCTA, GhostButton } from "components/utils/Buttons";
-
-import { CommentsStyle } from "./Comments.style";
+import { formatDate } from "helpers";
 import { CommentType } from "types/types";
+
+import { ButtonCTA, GhostButton } from "components/utils/Buttons";
+import { CommentsStyle } from "./Comments.style";
+
 import logo from "assets/images/square-logo.png";
 import { ReactComponent as HeartIcon } from "assets/icons/reactions/heartSmall.svg";
 
@@ -21,14 +23,15 @@ interface PropTypes {
 
 const Comments: React.FC<PropTypes> = ({ postId, postComments, openModal }) => {
   const { currentUser } = useSelector(getAuthState);
-  const [submitDisabled, setSubmitDisabled] = useState(true);
 
+  const [submitDisabled, setSubmitDisabled] = useState(true);
   const [commentText, setCommentText] = useState("");
   const [likedComments, setLikedComments] = useState<string[]>([]);
   const [comments, setComments] = useState<CommentType[]>(postComments);
 
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
+
     const { displayName, username, photoURL } = currentUser;
     const comment: CommentType = {
       id: nanoid(),
@@ -61,14 +64,6 @@ const Comments: React.FC<PropTypes> = ({ postId, postComments, openModal }) => {
       setLikedComments([...likedComments, commentId]);
     }
     updateComments(postId, comments);
-  };
-
-  const formatCommentSubmitDate = (date: string) => {
-    return new Date(date).toLocaleDateString("fa-IR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
   };
 
   const heartClassName = (commentId: string) => {
@@ -114,6 +109,7 @@ const Comments: React.FC<PropTypes> = ({ postId, postComments, openModal }) => {
             alt={currentUser?.username || "default_pic"}
             className="user_profile-pic"
           />
+
           <form action="#" className="comment_form" onSubmit={(e) => handleSubmitComment(e)}>
             <TextareaAutosize
               minRows={4}
@@ -152,10 +148,7 @@ const Comments: React.FC<PropTypes> = ({ postId, postComments, openModal }) => {
                           >
                             {comment.writerName || `@${comment.writerUsername}`}
                           </Link>
-                          •
-                          <span className="publish_date">
-                            {formatCommentSubmitDate(comment.submitDate)}
-                          </span>
+                          •<span className="publish_date">{formatDate(comment.submitDate)}</span>
                         </p>
 
                         {/* comment text */}

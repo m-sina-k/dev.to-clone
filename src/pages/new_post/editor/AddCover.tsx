@@ -17,29 +17,19 @@ const AddCover: React.FC<PropTypes> = ({ postCover, setPostCover }) => {
     <Row id="post-cover_container">
       {postCover ? (
         <div>
-          <img
-            src={postCover}
-            alt="پیش-نمایش-کاور-پست"
-            className="post-cover_preview"
-          />
+          <img src={postCover} alt="پیش-نمایش-کاور-پست" className="post-cover_preview" />
           <section id="button_contaier">
             <button className="cover_button" onClick={handleSetPostCover}>
               تغییر
             </button>
 
-            <button
-              className="cover_button cover_button--delete"
-              onClick={removePostCover}
-            >
+            <button className="cover_button cover_button--delete" onClick={removePostCover}>
               حذف
             </button>
           </section>
         </div>
       ) : (
-        <button
-          className="cover_button cover_button--add has_tooltip"
-          onClick={handleSetPostCover}
-        >
+        <button className="cover_button cover_button--add has_tooltip" onClick={handleSetPostCover}>
           <span>افزودن کاور پست</span>
           <Tooltip top="110%" className="editor_tooltip">
             برای کیفیت بهتر از مقیاس 100:42 استفاده کنید

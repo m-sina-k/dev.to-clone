@@ -4,11 +4,8 @@ export const authPersistMiddleware = (store) => (next) => (action) => {
   const result = next(action);
   if (action.type?.startsWith("authSlice/")) {
     const { currentUser } = store.getState().auth;
-    if (currentUser)
-      localStorage.setItem(
-        "DEV.to__user-credentials",
-        JSON.stringify(currentUser)
-      );
+    if (currentUser) localStorage.setItem("DEV.to__user-credentials", JSON.stringify(currentUser));
+    else localStorage.removeItem("DEV.to__user-credentials");
   }
   return result;
 };

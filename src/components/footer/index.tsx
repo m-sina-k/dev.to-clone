@@ -16,17 +16,18 @@ const Index = () => {
     <Footer>
       <Container>
         <p id="about-text">
-          یک شبکه اجتماعی سازنده و فراگیر برای توسعه دهندگان نرم افزار.همراه شما
-          در تمامی گام های سفرتان.
+          یک شبکه اجتماعی سازنده و فراگیر برای توسعه دهندگان نرم افزار.همراه شما در تمامی گام های
+          سفرتان.
         </p>
         <p id="credit-text">
-          ساخته شده با <FiHeart id="heart_icon" /> و{" "}
-          <FiCoffee id="coffee_icon" />
+          ساخته شده با{" "}
+          <span className="icon_container">
+            <FiHeart id="heart_icon" /> و <FiCoffee id="coffee_icon" />
+          </span>
           توسط
           <a href="https://github.com/m-sina-k/" id="github_link">
-            سینا کاظمی
+            سینا کاظمی{" "}
           </a>
-          .
         </p>
       </Container>
     </Footer>

@@ -1,7 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuthState, userSignOut } from "features/authSlice";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { useAppDispatch } from "app/store";
+import { getAuthState, userSignOut } from "features/authSlice";
+
 import { ButtonCTA } from "components/utils/Buttons";
 import { Container } from "components/layout";
 
@@ -26,7 +29,9 @@ const SignOutStyle = styled.main`
 `;
 
 const SignOutConfirm = () => {
-  const dispatch = useDispatch();
+  document.title = "خروج از حساب - انجمن توسعه دهندگان";
+
+  const dispatch = useAppDispatch();
   const { currentUser } = useSelector(getAuthState);
 
   const handleSignOut = () => {

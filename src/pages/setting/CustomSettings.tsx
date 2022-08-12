@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
+
 import { getAppTheme, changeThemeMode } from "features/uiSlice";
-import { Block } from "components/layout";
 import { ThemeMode } from "types/types";
+
+import { Block } from "components/layout";
 
 import lightThemePic from "assets/images/light_theme.png";
 import darkThemePic from "assets/images/dark_theme.png";

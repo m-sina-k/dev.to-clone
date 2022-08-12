@@ -1,10 +1,12 @@
-import { useDispatch,useSelector } from "react-redux";
-import { toggleShowSidebarNav,sidebarNavStatus } from "features/uiSlice";
+import { useDispatch, useSelector } from "react-redux";
 
+import { toggleShowSidebarNav, sidebarNavStatus } from "features/uiSlice";
+
+import Navigation from "components/utils/Navigation";
 import { Row } from "components/layout";
 import { ButtonSecondary } from "components/utils/Buttons";
 import { SidebarNav } from "./SidebarNav.Styles";
-import Navigation from "components/utils/Navigation";
+
 import { IoMdClose } from "react-icons/io";
 
 const Index = () => {

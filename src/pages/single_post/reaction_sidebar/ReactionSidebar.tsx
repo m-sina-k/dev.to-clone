@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 
 import { getAuthState } from "features/authSlice";
 import { reactToPost } from "helpers/firebaseMethods";
+import { PostType } from "types/types";
 
 import MoreOptions from "./MoreOptions";
 import { ReactionSidebarStyle } from "./ReactionSidebar.style";
-import { PostType } from "types/types";
 
 import { ReactComponent as HeartIcon } from "assets/icons/reactions/heart.svg";
 import { ReactComponent as UnicornIcon } from "assets/icons/reactions/unicorn.svg";
@@ -23,9 +23,9 @@ enum ReactionOperation {
 }
 
 const ReactionSidebar: React.FC<PropTypes> = ({ post, openModal }) => {
-  const { currentUser } = useSelector(getAuthState);
-
   const { hearts, unicorns, saves } = post.reactions;
+
+  const { currentUser } = useSelector(getAuthState);
 
   const [userLikedPost, setUserLikedPost] = useState(false);
   const [userSavedPost, setUserSavedPost] = useState(false);

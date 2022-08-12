@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useReadingTime from "hooks/useReadingTime";
 
+import { reactToPost } from "helpers/firebaseMethods";
+import { getAuthState } from "features/authSlice";
+
 import RequireAuthModal from "components/require_auth_modal";
 import AuthorDetails from "components/AuthorDetails";
 import Tag from "components/utils/Tag";
-import { reactToPost } from "helpers/firebaseMethods";
 import { GhostButton } from "components/utils/Buttons";
 import { PostBlock } from "./PostBlock.style";
-import { getAuthState } from "features/authSlice";
+import { PostType } from "types/types";
 
 import { ReactComponent as HeartIcon } from "assets/icons/reactions/heartSmall.svg";
 import { ReactComponent as CommentIcon } from "assets/icons/reactions/commentSmall.svg";
-import { PostType } from "types/types";
 
 interface PropTypes {
   post: PostType;
@@ -22,6 +23,7 @@ interface PropTypes {
 const Index: React.FC<PropTypes> = ({ post }) => {
   const { author, postDetails, reactions } = post;
   const { currentUser } = useSelector(getAuthState);
+
   const [readingTime, setReadingTime] = useState(null);
   const [userSavedPost, setUserSavedPost] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -41,6 +43,7 @@ const Index: React.FC<PropTypes> = ({ post }) => {
 
   const toggleSavePost = (e: React.MouseEvent) => {
     e.preventDefault();
+
     if (currentUser) {
       const { username, id } = currentUser;
       if (userSavedPost) {
@@ -56,6 +59,7 @@ const Index: React.FC<PropTypes> = ({ post }) => {
   return (
     <PostBlock>
       {showAuthModal && <RequireAuthModal showModal={showAuthModal} closeModal={closeAuthModal} />}
+
       <Link to={`/post/${postDetails.id}`}>
         {/* post cover */}
         {postDetails.cover && (
@@ -71,6 +75,9 @@ const Index: React.FC<PropTypes> = ({ post }) => {
             username={author.username}
             date={postDetails.publishDate}
             profilePic={author.profilePic}
+            authorId={author.id}
+            postTitle={postDetails.title}
+            postId={postDetails.id}
           />
 
           {/* post title */}

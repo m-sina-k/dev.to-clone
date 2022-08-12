@@ -33,6 +33,9 @@ const Index: React.FC<PropTypes> = ({ post, openModal }) => {
             username={author.username}
             date={postDetails.publishDate}
             profilePic={author.profilePic}
+            authorId={author.id}
+            postTitle={postDetails.title}
+            postId={postDetails.id}
           />
 
           {/* title */}

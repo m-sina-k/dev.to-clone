@@ -7,6 +7,7 @@ import { useAppDispatch } from "app/store";
 import { uploadPost } from "features/uploadPostSlice";
 import { getAuthState } from "features/authSlice";
 import { setPostUploadError, getUploadPostState } from "features/uploadPostSlice";
+import { PostTagsType, PostType } from "types/types";
 
 import EditorControls from "./EditorControls";
 import AddCover from "./AddCover";
@@ -14,7 +15,6 @@ import AddTag from "./AddTag";
 
 import { Block, Row } from "components/layout";
 import { ButtonCTA } from "components/utils/Buttons";
-import { PostTagsType, PostType } from "types/types";
 
 // tiptap config
 import { useEditor, EditorContent } from "@tiptap/react";
@@ -55,7 +55,7 @@ const Editor: React.FC<PropTypes> = ({
         openOnClick: true,
       }),
       Placeholder.configure({
-        placeholder: "محتوای پست خود را وارد کنید...",
+        placeholder: "محتوای پست را وارد کنید...",
       }),
       TextAlign.configure({
         alignments: ["left", "right", "center"],
@@ -84,7 +84,7 @@ const Editor: React.FC<PropTypes> = ({
   };
 
   const handleUploadPost = async () => {
-    const { id, username, photoURL, displayName, registerDate } = currentUser;
+    const { id, username, photoURL, displayName, registerDate, bio } = currentUser;
     const post: PostType = {
       author: {
         id,
@@ -92,6 +92,7 @@ const Editor: React.FC<PropTypes> = ({
         username,
         profilePic: photoURL,
         registerDate,
+        bio,
       },
       postDetails: {
         id: nanoid(),
@@ -115,6 +116,7 @@ const Editor: React.FC<PropTypes> = ({
   const publishPost = () => {
     setPublishError(null);
     dispatch(setPostUploadError(null));
+
     if (postTitle.trim() === "" || postContent.trim() === "") {
       setPublishError({
         variant: "danger",
@@ -157,8 +159,8 @@ const Editor: React.FC<PropTypes> = ({
       {/* publish button */}
       <Row id="publish-btn_container" jc="flex-end">
         {postUploadLoading ? (
-          <ButtonCTA p="0.5rem 1.5rem">
-            <Oval width={15} height={15} color="white" />
+          <ButtonCTA p="0.5rem 1.5rem" className="loading_button--inline">
+            <Oval width={20} height={20} color="white" />
           </ButtonCTA>
         ) : (
           <ButtonCTA p="0.5rem 1.5rem" id="publish_btn" onClick={publishPost}>

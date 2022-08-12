@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchPostsFromFirestore } from "helpers/firebaseMethods";
-import { PostType } from "types/types";
+import { PostType, PostTagsType } from "types/types";
 
 interface State {
   posts: PostType[];
@@ -26,10 +26,12 @@ export const fetchPosts = createAsyncThunk(
     return {
       allPosts: postFetched as PostType[],
       helpPosts: postFetched.filter(
-        (post) => post.postDetails.tags.find((tag: any) => tag.name === "help") as PostType[]
+        (post) =>
+          post.postDetails.tags.find((tag: PostTagsType) => tag.name === "help") as PostType[]
       ),
       discussPosts: postFetched.filter(
-        (post) => post.postDetails.tags.find((tag: any) => tag.name === "discuss") as PostType[]
+        (post) =>
+          post.postDetails.tags.find((tag: PostTagsType) => tag.name === "discuss") as PostType[]
       ),
     };
   }

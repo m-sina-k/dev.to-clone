@@ -25,10 +25,9 @@ const postsSlice = createSlice({
   name: "uploadPostSlice",
   initialState,
   reducers: {
-    
-    setPostUploadError:(state,{payload})=>{
-      state.postUploadError = payload
-    }
+    setPostUploadError: (state, { payload }) => {
+      state.postUploadError = payload;
+    },
   },
   extraReducers: (builder) => {
     builder

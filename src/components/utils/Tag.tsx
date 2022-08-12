@@ -6,8 +6,9 @@ interface TagProps {
   color?: string;
   name?: string;
   hover?: boolean;
-  removable?: boolean;
+  removeCallback?: (tagId: number) => void;
   hasBg?: boolean;
+  id?: number;
 }
 
 const TagStyle = styled.section<TagProps>`
@@ -51,27 +52,14 @@ const TagStyle = styled.section<TagProps>`
     `}
 `;
 
-const Tag: React.FC<TagProps> = ({
-  color,
-  backColor,
-  name,
-  hover,
-  removable,
-  hasBg,
-}) => {
+const Tag: React.FC<TagProps> = ({ color, backColor, name, hover, removeCallback, id, hasBg }) => {
   return (
-    <TagStyle
-      color={color}
-      backColor={backColor}
-      hover={hover}
-      hasBg={hasBg}
-      className="tag"
-    >
+    <TagStyle color={color} backColor={backColor} hover={hover} hasBg={hasBg} className="tag">
       <span className="hash">#</span>
       <span className="tag_name">{name}</span>
-      {removable && (
-        <span className="remove_tag">
-          <IoMdClose size={18}/>
+      {removeCallback && id && (
+        <span className="remove_tag" onClick={() => removeCallback(id)}>
+          <IoMdClose size={18} />
         </span>
       )}
     </TagStyle>

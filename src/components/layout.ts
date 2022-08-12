@@ -110,20 +110,6 @@ export const Banner = styled.div<BannerProps>`
   }
 `;
 
-export const FormLoading = styled.div`
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
-  z-index: 50;
-`;
-
 export const Tooltip = styled.span<TooltipProps>`
   position: absolute;
   top: ${({ top }) => (top ? top : "110%")};

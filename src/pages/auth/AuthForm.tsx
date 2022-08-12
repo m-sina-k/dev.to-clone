@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { getAuthState, setAuthError } from "features/authSlice";
+
+import { Container, Block } from "components/layout";
 import { AuthFormStyle } from "./AuthForm.styles";
-import { Container, Block,FormLoading } from "components/layout";
-import { Oval } from "react-loader-spinner";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ interface Props {
 
 const AuthForm: React.FC<Props> = ({ children }) => {
   const dispatch = useDispatch();
-  const { authLoading, authError } = useSelector(getAuthState);
+  const { authError } = useSelector(getAuthState);
 
   // clear authError on render
   useEffect(() => {
@@ -34,17 +35,6 @@ const AuthForm: React.FC<Props> = ({ children }) => {
           )}
 
           <Block className="auth_form_container" p="2rem">
-            {/* loading overlay  */}
-            {authLoading && (
-              <FormLoading>
-                <Oval
-                  color="#3b49df"
-                  secondaryColor="#3b49df33"
-                  ariaLabel="لطفا صبر کنید..."
-                />
-              </FormLoading>
-            )}
-
             {/* heading */}
             <section className="heading">
               <h3 className="title">به DEV Community خوش آمدید</h3>

@@ -38,19 +38,19 @@ export const routes = [
   },
   {
     id: 5,
-    url: "/tags",
+    url: "#",
     text: "دسته بندی ها",
     icon: <TagsIcon />,
   },
   {
     id: 6,
-    url: "/faq",
+    url: "#",
     text: "سوالات متداول",
     icon: <FaqIcon />,
   },
   {
     id: 7,
-    url: "/about",
+    url: "#",
     text: "درباره ما",
     icon: <AboutIcon />,
   },

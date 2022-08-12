@@ -9,16 +9,18 @@ export const Footer = styled.footer`
   p {
     margin-bottom: 0.5rem;
   }
-
-  #heart_icon,
-  #coffee_icon {
+  .icon_container {
     margin: 0 5px;
-  }
-  #heart_icon {
-    color: red;
-  }
-  #coffee_icon {
-    color: brown;
+    #heart_icon,
+    #coffee_icon {
+      margin: 0 2px;
+    }
+    #heart_icon {
+      color: red;
+    }
+    #coffee_icon {
+      color: saddlebrown;
+    }
   }
   #github_link {
     color: royalblue;

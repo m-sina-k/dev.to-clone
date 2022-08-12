@@ -4,6 +4,7 @@ import {
   setDoc,
   getDoc,
   getDocs,
+  deleteDoc,
   arrayUnion,
   arrayRemove,
   collection,
@@ -197,5 +198,14 @@ export const fetchSavedPosts = async (postsId) => {
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+export const deletePost = async (postId) => {
+  try {
+    const docRef = doc(postsDbRef, postId);
+    await deleteDoc(docRef);
+  } catch (error) {
+    console.log(error);
   }
 };

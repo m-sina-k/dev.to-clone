@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 // slices
@@ -7,9 +7,9 @@ import authSlice from "features/authSlice";
 import uploadPostSlice from "features/uploadPostSlice";
 import fetchPostsSlice from "features/fetchPostsSlice";
 
-// middlewares
-import { themePersistMiddleware } from "app/middlewares/themePersist";
-import { authPersistMiddleware } from "app/middlewares/authPersist";
+// middleware
+import { themePersistMiddleware } from "app/middleware/themePersist";
+import { authPersistMiddleware } from "app/middleware/authPersist";
 
 const store = configureStore({
   reducer: {
@@ -19,9 +19,7 @@ const store = configureStore({
     fetchPosts: fetchPostsSlice,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(authPersistMiddleware)
-      .concat(themePersistMiddleware),
+    getDefaultMiddleware().concat(authPersistMiddleware).concat(themePersistMiddleware),
 });
 
 type AppDispatch = typeof store.dispatch;

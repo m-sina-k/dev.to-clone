@@ -2,10 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowSidebarNav, getExceptionRoutes } from "features/uiSlice";
 
-// assets
-import logo from "assets/images/logo.png";
-import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
-
 // components
 import { Header } from "components/header/Header.styles";
 import { Container, Row } from "components/layout";
@@ -13,10 +9,14 @@ import { ButtonSecondary } from "components/utils/Buttons";
 import HeaderWidgets from "components/header/HeaderWidgets";
 import SearchInput from "components/utils/SearchInput";
 
+// assets
+import logo from "assets/images/logo.png";
+import { ReactComponent as MenuIcon } from "assets/icons/utils/menu.svg";
+
 const Index = () => {
   const dispatch = useDispatch();
-  const exceptionRoutes = useSelector(getExceptionRoutes);
   const { pathname } = useLocation();
+  const exceptionRoutes = useSelector(getExceptionRoutes);
 
   const openSidebarNav = () => dispatch(toggleShowSidebarNav(true));
 

@@ -1,11 +1,12 @@
 import { useState, useRef } from "react";
+
 import { useOnClickOutside } from "hooks/useClickOutside";
+import { PostTagsType } from "types/types";
+import { tags } from "data/tags";
+
 import TagSelector from "./TagSelector";
 import { Row } from "components/layout";
 import Tag from "components/utils/Tag";
-
-import { PostTagsType } from "types/types";
-import { tags } from "data/tags";
 
 interface PropTypes {
   postTags: PostTagsType[];
@@ -25,9 +26,7 @@ const AddTag: React.FC<PropTypes> = ({ postTags, addTag, removeTag }) => {
   useOnClickOutside(tagSelectorRef, closeTagSelector);
 
   // get exception between all tags and selected tags, only show unselected tags in dropdown
-  const unSelectedTag = tags.filter(
-    ({ id: id1 }) => !postTags.some(({ id: id2 }) => id2 === id1)
-  );
+  const unSelectedTag = tags.filter(({ id: id1 }) => !postTags.some(({ id: id2 }) => id2 === id1));
 
   return (
     <div id="current_tags">
@@ -38,7 +37,8 @@ const AddTag: React.FC<PropTypes> = ({ postTags, addTag, removeTag }) => {
             name={tag.name}
             color={tag.color}
             backColor={tag.backColor}
-            removable
+            removeCallback={removeTag}
+            id={tag.id}
             hasBg
           />
         ))}
@@ -46,9 +46,7 @@ const AddTag: React.FC<PropTypes> = ({ postTags, addTag, removeTag }) => {
         {postTags.length < 4 && (
           <button id="add_tag" onClick={toggleShowTagSelector}>
             <span>
-              {postTags.length
-                ? "افزودن دسته بندی بیشتر..."
-                : "حداکثر 4 دسته بندی انتخاب کنید..."}
+              {postTags.length ? "افزودن دسته بندی بیشتر..." : "حداکثر 4 دسته بندی انتخاب کنید..."}
             </span>
           </button>
         )}

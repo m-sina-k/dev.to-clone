@@ -6,8 +6,8 @@ export const PostBlock = styled.article`
 
     img {
       width: 100%;
-      max-height: 100%;
       object-fit: cover;
+      height: 100%;
       border-radius: 6px 6px 0 0;
     }
   }
@@ -80,6 +80,12 @@ export const PostBlock = styled.article`
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.md}) {
+    .post_cover_container {
+      height: 230px;
+      img {
+        object-fit: unset;
+      }
+    }
     .post_details {
       .post_title {
         font-size: 1rem;

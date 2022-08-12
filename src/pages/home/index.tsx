@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
-import { Container, Banner } from "components/layout";
-import { Home } from "./Home.styles";
+
 import { getFetchPostsError } from "features/fetchPostsSlice";
 
-import Navigation from "components/utils/Navigation";
-import PostsContainer from "./posts_container/PostsContainer";
 import HomeSidebars from "./home_sidebars";
+import PostsContainer from "./PostsContainer";
+import { Container, Banner } from "components/layout";
+import Navigation from "components/utils/Navigation";
+import { Home } from "./Home.styles";
 
 const Index = () => {
   document.title = "👩‍💻👨‍💻 انجمن توسعه دهندگان";
@@ -18,6 +19,7 @@ const Index = () => {
           <p>{fetchError}</p>
         </Banner>
       )}
+
       <Container pageContainer>
         <Home>
           <div id="home_container">

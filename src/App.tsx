@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
-import { getAppTheme } from "features/uiSlice";
+
 import { useAppDispatch } from "app/store";
+import { getAppTheme } from "features/uiSlice";
 import { fetchPosts } from "features/fetchPostsSlice";
 
 // components
@@ -24,6 +25,7 @@ import Settings from "pages/setting";
 import NewPost from "pages/new_post";
 import SinglePost from "pages/single_post";
 import ReadingList from "pages/reading_list";
+import PageNotFound from "pages/404";
 
 // assets
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -44,21 +46,33 @@ const App = () => {
         <SidebarNav />
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/notifications/:sectionId" element={<Notifications />} />
-          <Route path="/search" element={<Search />} />
+
+          <Route path="/search/" element={<Search />} />
+          <Route path="/search/:query" element={<Search />} />
+
           <Route path="/sign-up" element={<SignUp />} />
+
           <Route path="/sign-in" element={<SignIn />} />
+
           <Route path="/signout-confirm" element={<SignOutConfirm />} />
+
           <Route element={<PrivateRoute />}>
             <Route path="/settings/:sectionId" element={<Settings />} />
           </Route>
+
           <Route element={<PrivateRoute />}>
             <Route path="/new-post" element={<NewPost />} />
           </Route>
+
           <Route path="/post/:postId" element={<SinglePost />} />
+
           <Route element={<PrivateRoute />}>
             <Route path="/reading-list" element={<ReadingList />} />
           </Route>
+
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </Router>

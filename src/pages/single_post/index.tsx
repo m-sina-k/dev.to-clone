@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
-import { fetchPostById } from "helpers/firebaseMethods";
-import { Container } from "components/layout";
 import { useParams } from "react-router-dom";
 
+import { fetchPostById } from "helpers/firebaseMethods";
+import { PostType } from "types/types";
+
+import { Container } from "components/layout";
+import RequireAuthModal from "components/require_auth_modal";
+import { Banner } from "components/layout";
 import ReactionSidebar from "./reaction_sidebar/ReactionSidebar";
 import PostContent from "./post_content";
 import AuthorSidebar from "./author_sidebar";
 import SinglePostSkeleton from "./single_post_skeleton";
-import RequireAuthModal from "components/require_auth_modal";
-import { Banner } from "components/layout";
 
-import { PostType } from "types/types";
 import { SinglePost } from "./SinglePost.style";
 
 const Index = () => {
   const { postId } = useParams();
+
   const [loading, setLoading] = useState(false);
   const [currentPost, setCurrentPost] = useState<PostType | null>(null);
   const [fetchError, setFetchError] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+
+  if (currentPost) document.title = `${currentPost.postDetails.title} - انجمن توسعه دهندگان`;
 
   const fetchPost = async () => {
     setLoading(true);

@@ -128,6 +128,16 @@ label{
 .skeleton {
     animation: ${skeleton} 1s infinite alternate;
   }
+
+  .loading_button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &--inline{
+          width: max-content;
+        }
+      }
 `;
 
 export default GlobalStyle;

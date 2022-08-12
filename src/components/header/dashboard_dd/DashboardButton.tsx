@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { getAuthState } from "features/authSlice";
 import styled from "styled-components";
-import DashboardDd from "./DashboardDd";
+
 import { useOnClickOutside } from "hooks/useClickOutside";
+import { getAuthState } from "features/authSlice";
+import DashboardDd from "./DashboardDd";
 
 const ProfBtn = styled.section`
   border-radius: 999px;
@@ -21,8 +22,8 @@ const ProfileButton = () => {
   const { currentUser } = useSelector(getAuthState);
   const { photoURL, displayName, username } = currentUser;
   const [showDd, setShowDd] = useState(false);
-  const toggleShowDd = () => setShowDd(!showDd);
 
+  const toggleShowDd = () => setShowDd(!showDd);
   const closeDd = () => setShowDd(false);
   const ddRef = useRef<HTMLButtonElement | null>(null);
   useOnClickOutside(ddRef, closeDd);

@@ -31,8 +31,7 @@ const Index = () => {
   const { currentUser, updateProfileStatus } = useSelector(getAuthState);
   const { username } = currentUser;
 
-  const getCurrentSection = () =>
-    selectOptions.find((section: any) => section.value === pathname);
+  const getCurrentSection = () => selectOptions.find((section: any) => section.value === pathname);
 
   const [currentPage, setCurrentPage] = useState(getCurrentSection());
 

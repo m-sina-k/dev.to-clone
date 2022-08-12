@@ -19,8 +19,7 @@ const Button = styled.button<ButtonProps>`
   ${({ m }) => (m ? { margin: m } : null)};
   ${({ p }) => (p ? { padding: p } : { padding: "6px 16px" })};
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.md}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.md}) {
     font-size: ${({ theme }) => theme.layout.font_size.sm};
   }
 `;
@@ -36,10 +35,8 @@ export const ButtonPrimary = styled(Button)`
 `;
 
 export const ButtonSecondary = styled(Button)`
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.colors.text : theme.colors.text_muted};
-  fill: ${({ theme, isActive }) =>
-    isActive ? theme.colors.text : theme.colors.text_muted};
+  color: ${({ theme, isActive }) => (isActive ? theme.colors.text : theme.colors.text_muted)};
+  fill: ${({ theme, isActive }) => (isActive ? theme.colors.text : theme.colors.text_muted)};
 
   &:hover {
     fill: ${({ theme }) => theme.layout.global_colors.primary};
@@ -49,10 +46,8 @@ export const ButtonSecondary = styled(Button)`
 `;
 
 export const ButtonTertiary = styled(Button)`
-  color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.text : theme.colors.text_muted};
-  fill: ${({ isActive, theme }) =>
-    isActive ? theme.colors.text : theme.colors.text_muted};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.text : theme.colors.text_muted)};
+  fill: ${({ isActive, theme }) => (isActive ? theme.colors.text : theme.colors.text_muted)};
   font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
 
   &:hover {
@@ -68,8 +63,7 @@ export const ButtonCTA = styled(Button)`
   background-color: ${({ theme }) => theme.layout.global_colors.primary};
 
   &:hover {
-    background-color: ${({ theme }) =>
-      theme.layout.global_colors.primary_shade};
+    background-color: ${({ theme }) => theme.layout.global_colors.primary_shade};
   }
 `;
 
@@ -77,7 +71,7 @@ export const GhostButton = styled(Button)`
   transition: all 0.3s ease;
   fill: ${({ theme }) => theme.colors.text_muted};
   color: ${({ theme }) => theme.colors.text_muted};
-  
+
   &:hover {
     fill: ${({ theme }) => theme.colors.text};
     color: ${({ theme }) => theme.colors.text};

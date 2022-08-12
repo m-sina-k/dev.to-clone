@@ -3,7 +3,6 @@ import { SinglePostSkeleton } from "./SinglePostSkeleton";
 
 const Index = () => {
   return (
-    // <div className="grid_container">
     <SinglePostSkeleton>
       <div className="post_content_container_skeleton">
         <aside className="reactions_sidebar_skeleton skeleton_block">
@@ -16,7 +15,6 @@ const Index = () => {
       </div>
       <Block className="author_sidebar_skeleton skeleton_block skeleton"></Block>
     </SinglePostSkeleton>
-    // </div>
   );
 };
 

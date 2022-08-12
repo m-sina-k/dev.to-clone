@@ -14,15 +14,23 @@ export const HomeSidebars = styled.aside`
     }
 
     .articles_container {
-      .article_link {
+      .article_link,
+      .article_link_skeleton {
         display: block;
         padding: 0.8rem;
-        border-top: ${({ theme }) =>
-          theme.name === "dark" ? `1px solid ${({ theme }) => theme.colors.border_color}` : null};
 
         &:hover {
           background-color: ${({ theme }) => theme.colors.block_color};
           color: ${({ theme }) => theme.layout.global_colors.primary};
+        }
+      }
+
+      .article_link_skeleton {
+        .post_title {
+          width: 100%;
+          height: 20px;
+          border-radius: 3px;
+          background-color: ${({ theme }) => theme.colors.body};
         }
       }
     }

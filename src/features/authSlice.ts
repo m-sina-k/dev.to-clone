@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "server/firebase.config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {
   setAuthErrorMessage,
   registerUserInFirestore,
@@ -110,11 +110,11 @@ const authSlice = createSlice({
     setAuthError: (state, { payload }) => {
       state.authError = payload;
     },
-    userSignOut: (state) => {
-      state.currentUser = null;
-    },
     setUpdateStatus: (state, { payload }) => {
       state.updateProfileStatus = payload;
+    },
+    userSignOut: (state) => {
+      state.currentUser = null;
     },
   },
   extraReducers: (builder) => {
@@ -162,7 +162,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuthError, userSignOut, setUpdateStatus } = authSlice.actions;
+export const { setAuthError, setUpdateStatus, userSignOut } = authSlice.actions;
 export const getAuthState = (state: any) => state.auth;
 
 export default authSlice.reducer;

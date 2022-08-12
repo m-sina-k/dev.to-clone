@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonSecondary } from "components/utils/Buttons";
+import { NewPostDisplayModeType as DisplayModeType } from "types/types";
 
 import logo from "assets/images/logo.png";
-import { NewPostDisplayModeType as DisplayModeType } from "types/types";
 import { IoMdClose } from "react-icons/io";
 
 interface PropTypes {
@@ -10,10 +10,7 @@ interface PropTypes {
   setDisplayMode: (mode: DisplayModeType) => void;
 }
 
-const NewPostHeader: React.FC<PropTypes> = ({
-  displayMode,
-  setDisplayMode,
-}) => {
+const NewPostHeader: React.FC<PropTypes> = ({ displayMode, setDisplayMode }) => {
   const navigate = useNavigate();
   const exitPage = () => navigate("/");
 

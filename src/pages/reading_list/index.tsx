@@ -5,18 +5,23 @@ import { Oval } from "react-loader-spinner";
 import { debounce } from "lodash";
 
 import { getAuthState } from "features/authSlice";
+import { formatDate } from "helpers";
 import { fetchSavedPosts, fetchUserInfo } from "helpers/firebaseMethods";
+import { PostType } from "types/types";
 
 import { Container, Input, Block, Banner } from "components/layout";
 import { GhostButton } from "components/utils/Buttons";
 import { ReadingList } from "./ReadingList.style";
-import { PostType } from "types/types";
+
 import { ReactComponent as BookmarkIcon } from "assets/icons/reactions/bookmark.svg";
 
 let allSavedPosts: any[] = [];
 
 const Index = () => {
+  document.title = "ذخیره شده ها - انجمن توسعه دهندگان";
+
   const { currentUser } = useSelector(getAuthState);
+
   const [savedPosts, setSavedPosts] = useState<PostType[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [fetchLoading, setFetchLoading] = useState(false);
@@ -26,7 +31,7 @@ const Index = () => {
     const fetchPosts = async () => {
       setFetchLoading(true);
       const currentUserInfo = await fetchUserInfo(currentUser.id);
-      if (currentUserInfo!.readingList.length) {
+      if (currentUserInfo?.readingList?.length) {
         let result = await fetchSavedPosts(currentUserInfo!.readingList);
         if (result) {
           setSavedPosts(result);
@@ -38,14 +43,6 @@ const Index = () => {
 
     fetchPosts();
   }, []);
-
-  const formatPublishDate = (date: string) => {
-    return new Date(date).toLocaleDateString("fa-IR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
@@ -88,9 +85,10 @@ const Index = () => {
                 ariaLabel="لطفا صبر کنید..."
               />
             </div>
-          ) : savedPosts.length > 0 ? (
+          ) : savedPosts?.length > 0 ? (
             savedPosts.map((post) => {
               const { postDetails, author } = post;
+
               return (
                 <Link to={`/post/${postDetails.id}`} key={postDetails.id} className="saved_post">
                   <section className="image_container">
@@ -100,13 +98,12 @@ const Index = () => {
                       className="author_profile-pic"
                     />
                   </section>
+
                   <section className="post_details">
                     <h4 className="post_title">{postDetails.title}</h4>
                     <section className="details_container">
                       <span className="author_name">{author.name || author.username}</span>
-                      <span className="publish_date">
-                        {formatPublishDate(postDetails.publishDate)}
-                      </span>
+                      <span className="publish_date">{formatDate(postDetails.publishDate)}</span>
                       <section className="tags_container">
                         {postDetails.tags.length > 0 &&
                           postDetails.tags.map((tag) => (

@@ -40,8 +40,7 @@ export const Notifications = styled.main`
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     .grid__container {
       grid-template-columns: 1fr;
     }

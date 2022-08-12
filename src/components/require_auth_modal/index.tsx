@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+
 import { ButtonCTA, ButtonSecondary } from "components/utils/Buttons";
 import { RequireAuthModal } from "./RequireAuthModal.style";
+
 import logo from "assets/images/square-logo.png";
 import { IoMdClose } from "react-icons/io";
 

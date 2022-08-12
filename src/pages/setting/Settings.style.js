@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const SettingsStyle = styled.main`
+  min-height: 80vh;
+
   .heading {
     margin-bottom: ${({ theme }) => theme.layout.spacing.md};
 
@@ -103,8 +105,7 @@ export const SettingsStyle = styled.main`
     }
   }
 
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.layout.break_point.lg}) {
+  @media only screen and (max-width: ${({ theme }) => theme.layout.break_point.lg}) {
     #mobile_page-selector_container {
       display: block;
     }
