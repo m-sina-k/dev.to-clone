@@ -2,6 +2,8 @@
 
 a programming blog inspired by [dev.to](https://dev.to/).
 
+[live demo](https://62f7547e6ae193743bf6dbb7--stunning-druid-e3d6e9.netlify.app/)
+
 ---
 
 ![landing page](./src/assets/images/screenshots/landing.png)
